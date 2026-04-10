@@ -1,0 +1,232 @@
+\documentclass[11pt]{article}
+\usepackage[margin=1in]{geometry}
+
+% Core packages
+\usepackage{amsmath,amssymb}
+\usepackage{graphicx}
+\usepackage{booktabs}
+\usepackage{float}
+\usepackage{siunitx}
+\usepackage{circuitikz}
+
+% Paragraphs
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{1\baselineskip}
+
+\begin{document}
+
+% ==================== CARÁTULA ====================
+\begin{titlepage}
+    \centering
+    
+    % LOGO
+    % \includegraphics[width=0.45\textwidth]{ITBA.PNG}\par % Descomentar si tienes la imagen
+    \vspace{1cm}
+
+    % UNIVERSIDAD
+    {\scshape\LARGE Instituto Tecnológico de Buenos Aires \par}
+    \vspace{0.6cm}
+
+    % TÍTULO
+    {\huge\bfseries Trabajo Práctico N°2 \par}
+    \vspace{0.4cm}
+    {\Large Circuitos de Corriente Continua \par}
+    \vspace{0.2cm}
+    {\large Física III \par}
+
+    \vspace{1.2cm}
+
+    % GRUPO E INTEGRANTES
+    \begin{flushleft}
+    {\Large\textbf{Grupo: 2}\par}
+    \vspace{0.5cm}
+
+    {\Large\textbf{Integrantes:}\par}
+    \vspace{0.3cm}
+    \begin{tabular}{l r}
+        CÁCERES SMOLER, MARIANO      & 66858 \\
+        CASTRO, TOMÁS                & 66905 \\
+        ROSA FERNANDEZ, ENZO NICOLÁS & 66518 \\
+        MARRESE, MÁXIMO              & 66223 \\
+    \end{tabular}
+    \end{flushleft}
+
+    \vfill
+
+    % FECHAS
+    \begin{flushleft}
+    {\large \textbf{Fecha de realización:} 10/04/2026\par}
+    {\large \textbf{Fecha de entrega:} 17/04/2026\par}
+    \end{flushleft}
+    
+    \vspace{0.6cm}
+    
+    % SECTOR DE EVALUACIÓN PARA EL DOCENTE
+    \begin{flushleft}
+    {\large\textbf{Observaciones del docente:}}\par
+    \vspace{0.2cm}
+    \framebox[\linewidth]{\rule{0pt}{3cm}} 
+    
+    \vspace{0.8cm}
+    
+    \begin{tabular}{@{}p{0.45\linewidth} p{0.45\linewidth}@{}}
+        \textbf{Fecha de aprobación:} \hrulefill & \textbf{Firma:} \hrulefill \\
+    \end{tabular}
+    \end{flushleft}
+    
+    \vspace{0.5cm}
+\end{titlepage}
+
+% ==================== 2. OBJETIVOS Y RESUMEN ====================
+\section{Objetivos y Resumen}
+\textbf{Objetivos:} 
+\begin{itemize}
+    \item Aprender a medir diferencias de potencial, intensidad de corriente y resistencias usando multímetros, y aplicar la ley de Ohm.
+    \item Comprobar experimentalmente las fórmulas de asociación en serie y paralelo.
+    \item Identificar mallas, ramas y nudos para comprobar experimental y analíticamente las leyes de Kirchhoff.
+    \item Construir un modelo de fuente de tensión real (con resistencia interna) y comprobar el Teorema de transferencia de Máxima Potencia.
+\end{itemize}
+
+\textbf{Resumen:}
+
+En este trabajo práctico se armaron distintos circuitos de corriente continua utilizando resistores, fuentes de alimentación y multímetros para medir las magnitudes eléctricas. Se verificaron las leyes fundamentales de la electricidad, como la ley de Ohm y las leyes de Kirchhoff, a través de mediciones directas y cálculos teóricos. 
+
+Además, se simuló y modeló una fuente de tensión real considerando su resistencia interna y se comprobó el Teorema de transferencia de máxima potencia mediante la variación de la resistencia de carga y el análisis de la potencia disipada. 
+
+Los resultados obtenidos mostraron una buena concordancia entre las mediciones experimentales y los cálculos teóricos, aunque se identificaron algunas discrepancias atribuibles a la tolerancia de los componentes y a las limitaciones de los instrumentos de medición. En general, el trabajo permitió consolidar los conceptos fundamentales de circuitos eléctricos y su aplicación práctica.
+
+% ==================== 3. INTRODUCCIÓN TEÓRICA ====================
+\section{Introducción teórica}
+La práctica se fundamenta en la \textbf{Ley de Ohm}, la cual establece que la resistencia $R$ de un conductor es el cociente entre la diferencia de potencial en sus extremos ($V_a - V_b$) y la corriente $I$ que lo atraviesa:
+
+$$ R = \frac{V_a - V_b}{I} $$
+
+Para el análisis de circuitos más complejos, se emplean las \textbf{Leyes de Kirchhoff}, derivadas de los principios de conservación:
+\begin{itemize}
+    \item \textit{Ley de los nodos (Conservación de la carga):} La suma algebraica de las intensidades de corriente en un nodo es cero ($\sum I = 0$).
+    \item \textit{Ley de las mallas (Conservación de la energía):} La suma algebraica de las diferencias de potencial a lo largo de una malla cerrada es cero ($\sum V = 0$).
+\end{itemize}
+
+Finalmente, para el análisis de fuentes reales, se considera que la diferencia de potencial entregada está dada por $V = \epsilon - I \cdot r_{int}$, donde $\epsilon$ es la fuerza electromotriz y $r_{int}$ la resistencia interna de la fuente. El \textbf{Teorema de la transferencia de máxima potencia} indica que la potencia disipada por una resistencia de carga es máxima cuando su valor iguala a la resistencia interna de la fuente.
+
+% ==================== 4. INSTRUMENTOS Y ELEMENTOS EMPLEADOS ====================
+\section{Instrumentos y elementos empleados}
+Para la realización de los experimentos, utilizamos los siguientes materiales:
+\begin{itemize}
+    \item 1 tablero de conexiones.
+    \item Fuentes de alimentación: pilas de \SI{1.5}{V} y \SI{9}{V}.
+    \item Resistores fijos de \SI{100}{\ohm}, \SI{220}{\ohm}, \SI{330}{\ohm} y \SI{10}{\mega\ohm}.
+    \item Multímetros digitales (utilizados como voltímetros, amperímetros y óhmetros).
+    \item Micróamperímetro para medir corrientes muy pequeñas.
+    \item Cables de conexión (banana-banana).
+\end{itemize}
+Conectamos los multímetros en serie para medir corriente y en paralelo para medir tensión, ajustando las escalas según fue necesario a lo largo de las mediciones.
+
+\begin{tikzpicture}[transform shape]
+	% Paths, nodes and wires:
+	\draw (6, 6) to[battery1, l={$V$}] (6, 8);
+	\draw (11, 7) to[american resistor] (11, 5);
+	\draw (11, 9) to[ammeter, l={$I_R$}] (11, 7);
+	\draw (13, 7) to[voltmeter, l={$V_R$}] (13, 5);
+	\draw (13, 5) |- (6, 5) -| (6, 6);
+	\draw (11, 7) -- (13, 7);
+	\draw (7.005, 9) to[switch] (8.005, 9);
+	\draw (6, 8) -| (6, 9) -- (7, 9) -- (7.005, 9);
+	\draw (8.005, 9) -- (11, 9);
+	\node[circ](N1) at (11, 7){} node[anchor=north east] at (N1.south west){$B$};
+	\node[circ](N2) at (11, 5){} node[anchor=south east] at (N2.north west){$A$};
+\end{tikzpicture}
+
+\begin{tikzpicture}[transform shape]
+	% Paths, nodes and wires:
+	\draw (6, 6) to[battery1, l={$V$}] (6, 8);
+	\draw (11, 7) to[american resistor] (11, 5);
+	\draw (11, 9) to[ammeter, l={$I_R$}] (11, 7);
+	\draw (13, 9) to[voltmeter, l={$V_R$}] (13, 5);
+	\draw (13, 5) |- (6, 5) -| (6, 6);
+	\draw (11, 9) -- (13, 9);
+	\draw (7.005, 9) to[switch] (8.005, 9);
+	\draw (6, 8) -| (6, 9) -- (7, 9) -- (7.005, 9);
+	\draw (8.005, 9) -- (11, 9);
+	\node[circ](N1) at (11, 7){} node[anchor=north east] at (N1.south west){$B$};
+	\node[circ](N2) at (11, 5){} node[anchor=south east] at (N2.north west){$A$};
+\end{tikzpicture}
+
+\begin{tikzpicture}[transform shape]
+	% Paths, nodes and wires:
+	\draw (1, 4) to[battery, l={$V_{S1}$}] (1, 3);
+	\draw (11, 3) to[battery, l={$V_{S2}$}] (11, 4);
+	\draw (1, 6) to[ammeter, l={$I_{R1}$}] (3, 6);
+	\draw (9, 6) to[ammeter, mirror, invert, l={$I_{R2}$}] (7, 6);
+	\draw (6, 3) to[ammeter, l={$I_{R3}$}] (6, 1);
+	\draw (3, 6) to[american resistor, l={$R_1$}] (5, 6);
+	\draw (9, 6) to[american resistor, l={$R_2$}] (11, 6);
+	\draw (6, 5) to[american resistor, l={$R_3$}] (6, 3);
+	\draw (5, 6) -- (7, 6);
+	\draw (6, 5) -| (6, 6);
+	\draw (11, 6) -- (11, 4);
+	\draw (11, 3) |- (1, 1) -| (1, 3);
+	\draw (1, 4) -| (1, 6);
+\end{tikzpicture}
+% ==================== 5. DATOS OBTENIDOS ====================
+\section{Datos obtenidos: discusión y cálculo de errores}
+
+\subsection{Parte 1: Resistencias y Ley de Ohm}
+Medimos las resistencias proporcionadas utilizando un óhmetro y luego calculamos su valor de forma indirecta midiendo tensión y corriente. Obtuvimos los siguientes datos:
+
+\begin{table}[H]
+    \centering
+    \begin{tabular}{cccccc}
+    \toprule
+    \textbf{Resistor} & \textbf{R Nominal [\si{\ohm}]} & \textbf{R Medida [\si{\ohm}]} & \textbf{V medido [\si{V}]} & \textbf{I medida [\si{mA}]} & \textbf{R Calculada ($V/I$) [\si{\ohm}]} \\
+    \midrule
+    1 & 150 & 148 & 1.436 & 9.77 & 146.98 \\
+    2 & 220 & 218 & 1.470 & 6.75 & 217.78 \\
+    3 & 330 & 325 & 1.490 & 4.60 & 323.91 \\
+    4 & \SI{10}{M\ohm} & \SI{10.04}{M\ohm} & 9.33 & \SI{1.74}{\micro\ampere} & \SI{5.362}{M\ohm} \\
+    \bottomrule
+    \end{tabular}
+    \caption{Comparación de resistencias medidas y calculadas.}
+\end{table}
+
+Para las asociaciones en serie y paralelo de las resistencias de 150, 220 y 330 \si{\ohm}, los valores obtenidos fueron:
+
+\begin{table}[H]
+    \centering
+    \begin{tabular}{lccccc}
+    \toprule
+    \textbf{Conexión} & \textbf{$R_{EQ}$ Nominal} & \textbf{$R_{EQ}$ Medida} & \textbf{V [\si{V}]} & \textbf{I [\si{mA}]} & \textbf{$R_{EQ}$ Calculada ($V/I$)} \\
+    \midrule
+    Serie & \SI{700}{\ohm} & \SI{692}{\ohm} & 1.517 & 2.19 & \SI{692.69}{\ohm} \\
+    Paralelo & \SI{68.9}{\ohm} & \SI{68.95}{\ohm} & 1.265 & 18.32 & \SI{69.05}{\ohm} \\
+    \bottomrule
+    \end{tabular}
+    \caption{Resistencias equivalentes en serie y paralelo.}
+\end{table}
+
+\subsection{Parte 2: Leyes de Kirchhoff}
+Armamos el circuito de dos mallas con fuentes de \SI{9}{V} y \SI{1.5}{V}. Las ecuaciones planteadas analíticamente fueron:
+$$ 9\text{V} - I_1 R_1 - (I_1 - I_2) R_2 = 0 $$
+$$ -1.5\text{V} - I_2 R_3 - (I_2 - I_1) R_2 = 0 $$
+
+Al medir las corrientes con los multímetros, registramos:
+\begin{itemize}
+    \item \textbf{Circuito original:} $I_1 = \SI{35.60}{mA}$, $I_2 = \SI{16.86}{mA}$, Corriente central ($I_1 - I_2$) = \SI{18.4}{mA}.
+    \item \textbf{Invirtiendo la fuente de 1.5V:} $I_1 = \SI{30.2}{mA}$, $I_2 = \SI{8.08}{mA}$, Corriente central = \SI{22.1}{mA}.
+\end{itemize}
+
+\subsection{Parte 3: Máxima transferencia de potencia}
+[COMPLETAR: Insertar aquí los gráficos obtenidos con Logger Pro / Excel de V vs I, y de Potencia vs Resistencia de carga. Mencionar la ecuación de la recta de ajuste y los valores de $\epsilon$ y $r_{int}$ extraídos.]
+
+% ==================== 6. ANÁLISIS DE RESULTADOS ====================
+\section{Análisis de los resultados obtenidos}
+
+[COMPLETAR: Discutir las diferencias entre los valores. 
+\begin{itemize}
+    \item Para la Tabla 1, explicar por qué la $R$ calculada de \SI{10}{M\ohm} da tan distinto (efecto de la resistencia interna de los instrumentos, esquemas de conexión corta y larga).
+    \item Para la parte de Kirchhoff, comparar las corrientes medidas con las teóricas esperadas y mencionar posibles fuentes de error (tolerancia de resistores, cables).
+    \item Para la última parte, discutir cómo el pico de la curva de potencia coincide (o no) con la resistencia interna calculada de la pila.
+\end{itemize}
+]
+
+\end{document}
