@@ -8,6 +8,10 @@
 \usepackage{float}
 \usepackage{siunitx}
 \usepackage{circuitikz}
+\usepackage[spanish]{babel}
+
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.18} % O la versión que tengas instalada
 
 % Paragraphs
 \setlength{\parindent}{0pt}
@@ -99,7 +103,10 @@ Los resultados obtenidos mostraron una buena concordancia entre las mediciones e
 \section{Introducción teórica}
 La práctica se fundamenta en la \textbf{Ley de Ohm}, la cual establece que la resistencia $R$ de un conductor es el cociente entre la diferencia de potencial en sus extremos ($V_a - V_b$) y la corriente $I$ que lo atraviesa:
 
-$$ R = \frac{V_a - V_b}{I} $$
+\begin {equation}
+R = \frac{V_a - V_b}{I}
+\label{eq:LeyDeOhm}
+\end{equation}
 
 Para el análisis de circuitos más complejos, se emplean las \textbf{Leyes de Kirchhoff}, derivadas de los principios de conservación:
 \begin{itemize}
@@ -107,73 +114,244 @@ Para el análisis de circuitos más complejos, se emplean las \textbf{Leyes de K
     \item \textit{Ley de las mallas (Conservación de la energía):} La suma algebraica de las diferencias de potencial a lo largo de una malla cerrada es cero ($\sum V = 0$).
 \end{itemize}
 
-Finalmente, para el análisis de fuentes reales, se considera que la diferencia de potencial entregada está dada por $V = \epsilon - I \cdot r_{int}$, donde $\epsilon$ es la fuerza electromotriz y $r_{int}$ la resistencia interna de la fuente. El \textbf{Teorema de la transferencia de máxima potencia} indica que la potencia disipada por una resistencia de carga es máxima cuando su valor iguala a la resistencia interna de la fuente.
+Finalmente, para el análisis de fuentes reales, se considera que la diferencia de potencial entregada está dada por $V = \epsilon - I \cdot R_{int}$, donde $\epsilon$ es la fuerza electromotriz y $r_{int}$ la resistencia interna de la fuente. El \textbf{Teorema de la transferencia de máxima potencia} indica que la potencia disipada por una resistencia de carga es máxima cuando su valor iguala a la resistencia interna de la fuente.
 
 % ==================== 4. INSTRUMENTOS Y ELEMENTOS EMPLEADOS ====================
 \section{Instrumentos y elementos empleados}
 Para la realización de los experimentos, utilizamos los siguientes materiales:
 \begin{itemize}
     \item 1 tablero de conexiones.
-    \item Fuentes de alimentación: pilas de \SI{1.5}{V} y \SI{9}{V}.
-    \item Resistores fijos de \SI{100}{\ohm}, \SI{220}{\ohm}, \SI{330}{\ohm} y \SI{10}{\mega\ohm}.
+    \item Fuentes de alimentación: $V_{S1} = \SI{9}{V}$ y $V_{S2} = \SI{1.5}{V}$.
+    \item Resistores fijos de $R_{1} = \SI{100}{\ohm}$, $R_{2} = \SI{220}{\ohm}$, $R_{3} = \SI{330}{\ohm}$ y $R_{4} = \SI{10}{\mega\ohm}$.
     \item Multímetros digitales (utilizados como voltímetros, amperímetros y óhmetros).
     \item Micróamperímetro para medir corrientes muy pequeñas.
     \item Cables de conexión (banana-banana).
 \end{itemize}
-Conectamos los multímetros en serie para medir corriente y en paralelo para medir tensión, ajustando las escalas según fue necesario a lo largo de las mediciones.
 
-\begin{tikzpicture}[transform shape]
-	% Paths, nodes and wires:
-	\draw (6, 6) to[battery1, l={$V$}] (6, 8);
-	\draw (11, 7) to[american resistor] (11, 5);
-	\draw (11, 9) to[ammeter, l={$I_R$}] (11, 7);
-	\draw (13, 7) to[voltmeter, l={$V_R$}] (13, 5);
-	\draw (13, 5) |- (6, 5) -| (6, 6);
-	\draw (11, 7) -- (13, 7);
-	\draw (7.005, 9) to[switch] (8.005, 9);
-	\draw (6, 8) -| (6, 9) -- (7, 9) -- (7.005, 9);
-	\draw (8.005, 9) -- (11, 9);
-	\node[circ](N1) at (11, 7){} node[anchor=north east] at (N1.south west){$B$};
-	\node[circ](N2) at (11, 5){} node[anchor=south east] at (N2.north west){$A$};
-\end{tikzpicture}
+\subsection*{Experiencia 1: Medición de resistencias y Ley de Ohm}
 
-\begin{tikzpicture}[transform shape]
-	% Paths, nodes and wires:
-	\draw (6, 6) to[battery1, l={$V$}] (6, 8);
-	\draw (11, 7) to[american resistor] (11, 5);
-	\draw (11, 9) to[ammeter, l={$I_R$}] (11, 7);
-	\draw (13, 9) to[voltmeter, l={$V_R$}] (13, 5);
-	\draw (13, 5) |- (6, 5) -| (6, 6);
-	\draw (11, 9) -- (13, 9);
-	\draw (7.005, 9) to[switch] (8.005, 9);
-	\draw (6, 8) -| (6, 9) -- (7, 9) -- (7.005, 9);
-	\draw (8.005, 9) -- (11, 9);
-	\node[circ](N1) at (11, 7){} node[anchor=north east] at (N1.south west){$B$};
-	\node[circ](N2) at (11, 5){} node[anchor=south east] at (N2.north west){$A$};
-\end{tikzpicture}
+\subsubsection*{Parte A: Medición de resistencias individuales}
+Para la primera experiencia, el objetivo fue determinar el valor de diferentes resistores de 3 maneras diferentes: calculo teórico, medición directa, y de manera indirecta midiendo la tensión y la corriente. Conectamos los multímetros ajustando las escalas según fue necesario, y cambiamos las entradas del mismo para medir la magnitud deseada.
 
-\begin{tikzpicture}[transform shape]
-	% Paths, nodes and wires:
-	\draw (1, 4) to[battery, l={$V_{S1}$}] (1, 3);
-	\draw (11, 3) to[battery, l={$V_{S2}$}] (11, 4);
-	\draw (1, 6) to[ammeter, l={$I_{R1}$}] (3, 6);
-	\draw (9, 6) to[ammeter, mirror, invert, l={$I_{R2}$}] (7, 6);
-	\draw (6, 3) to[ammeter, l={$I_{R3}$}] (6, 1);
-	\draw (3, 6) to[american resistor, l={$R_1$}] (5, 6);
-	\draw (9, 6) to[american resistor, l={$R_2$}] (11, 6);
-	\draw (6, 5) to[american resistor, l={$R_3$}] (6, 3);
-	\draw (5, 6) -- (7, 6);
-	\draw (6, 5) -| (6, 6);
-	\draw (11, 6) -- (11, 4);
-	\draw (11, 3) |- (1, 1) -| (1, 3);
-	\draw (1, 4) -| (1, 6);
-\end{tikzpicture}
+Realizamos las mediciones utilizando dos configuraciones distintas para analizar la influencia de la resistencia interna de los instrumentos. Primero armamos el circuito en \textbf{conexión corta} (Figura \ref{fig:corta}), donde el voltímetro se conecta en paralelo exclusivamente con el resistor. Luego, modificamos el circuito a \textbf{conexión larga} (Figura \ref{fig:larga}), conectando el voltímetro en paralelo con el conjunto formado por el amperímetro y el resistor.
+\begin{figure}[H]
+    \centering
+    \begin{tikzpicture}[transform shape]
+        % Paths, nodes and wires:
+        \draw (6, 6) to[battery1, l={$V$}] (6, 8);
+        \draw (11, 7) to[american resistor] (11, 5);
+        \draw (11, 9) to[ammeter, l={$I_R$}] (11, 7);
+        \draw (13, 7) to[voltmeter, l={$V_R$}] (13, 5);
+        \draw (13, 5) |- (6, 5) -| (6, 6);
+        \draw (11, 7) -- (13, 7);
+        \draw (7.005, 9) to[switch] (8.005, 9);
+        \draw (6, 8) -| (6, 9) -- (7, 9) -- (7.005, 9);
+        \draw (8.005, 9) -- (11, 9);
+        \node[circ](N1) at (11, 7){} node[anchor=north east] at (N1.south west){$B$};
+        \node[circ](N2) at (11, 5){} node[anchor=south east] at (N2.north west){$A$};
+    \end{tikzpicture}
+    \caption{Circuito de medición con conexión corta (voltímetro en paralelo solo con la resistencia).}
+    \label{fig:corta}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \begin{tikzpicture}[transform shape]
+        % Paths, nodes and wires:
+        \draw (6, 6) to[battery1, l={$V$}] (6, 8);
+        \draw (11, 7) to[american resistor] (11, 5);
+        \draw (11, 9) to[ammeter, l={$I_R$}] (11, 7);
+        \draw (13, 9) to[voltmeter, l={$V_R$}] (13, 5);
+        \draw (13, 5) |- (6, 5) -| (6, 6);
+        \draw (11, 9) -- (13, 9);
+        \draw (7.005, 9) to[switch] (8.005, 9);
+        \draw (6, 8) -| (6, 9) -- (7, 9) -- (7.005, 9);
+        \draw (8.005, 9) -- (11, 9);
+        \node[circ](N1) at (11, 7){} node[anchor=north east] at (N1.south west){$B$};
+        \node[circ](N2) at (11, 5){} node[anchor=south east] at (N2.north west){$A$};
+    \end{tikzpicture}
+    \caption{Circuito de medición con conexión larga (voltímetro en paralelo con el amperímetro y la resistencia).}
+    \label{fig:larga}
+\end{figure}
+
+Para los resistores $R_1$, $R_2$ y $R_3$ (de valor nominal bajo) usamos el conexionado corto. Mientras que, para $R_4$ de \SI{10}{M\ohm}, utilizamos ambos conexionados para comparar los resultados y evidenciar el efecto de la resistencia interna del voltímetro en la medición de resistencias muy altas.
+
+\subsubsection*{Parte B: Asociaciones en serie y en paralelo}
+Posteriormente, comprobamos la validez de las ecuaciones teóricas para la asociación de resistencias. Para ello, conectamos los tres primeros resistores ($R_1$, $R_2$ y $R_3$) primero en serie (Figura \ref{fig:serie}) y luego en paralelo (Figura \ref{fig:paralelo}). En cada caso, repetimos el procedimiento de medición (calculando primero el valor teórico, y luego registrando tanto el valor de resistencia como la corriente total y la diferencia de potencial del conjunto).
+
+\begin{figure}[H]
+    \centering
+    \begin{tikzpicture}[transform shape]
+        % Paths, nodes and wires:
+        \draw (6, 6) to[battery1, l={$V$}] (6, 8);
+        
+        % Amperímetro
+        \draw (11, 9) to[ammeter, l={$I_T$}] (11, 7);
+        
+        % Resistencias en serie
+        \draw (11, 7) to[american resistor, l={$R_1$}] (11, 5);
+        \draw (11, 5) to[american resistor, l={$R_2$}] (11, 3);
+        \draw (11, 3) to[american resistor, l={$R_3$}] (11, 1);
+        
+        % Voltímetro (conexión corta abarcando la serie completa)
+        \draw (13, 7) to[voltmeter, l={$V_T$}] (13, 1);
+        \draw (11, 7) -- (13, 7);
+        \draw (11, 1) -- (13, 1);
+        
+        % Camino de retorno a la fuente
+        \draw (13, 1) |- (6, 1) -| (6, 6);
+        
+        % Interruptor y cable superior
+        \draw (7.005, 9) to[switch] (8.005, 9);
+        \draw (6, 8) -| (6, 9) -- (7, 9) -- (7.005, 9);
+        \draw (8.005, 9) -- (11, 9);
+        
+        \node[circ](N1) at (11, 7){} node[anchor=north east] at (N1.south west){$B$};
+        \node[circ](N2) at (11, 1){} node[anchor=south east] at (N2.north west){$A$};
+    \end{tikzpicture}
+    \caption{Circuito para la medición de la resistencia equivalente en serie.}
+    \label{fig:serie}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \begin{tikzpicture}[transform shape]
+        % Paths, nodes and wires:
+        \draw (6, 6) to[battery1, l={$V$}] (6, 8);
+        
+        % Interruptor, cable superior y amperímetro (mide I total)
+        \draw (6, 8) -| (6, 9) -- (7, 9) -- (7.005, 9);
+        \draw (7.005, 9) to[switch] (8.005, 9);
+        \draw (8.005, 9) -- (11, 9);
+        \draw (11, 9) to[ammeter, l={$I_T$}] (11, 7);
+        
+        % Nodos principales superior e inferior de la configuración en paralelo
+        \draw (9, 7) -- (15, 7); % Riel superior
+        \draw (9, 4) -- (15, 4); % Riel inferior
+        
+        % Ramas en paralelo (3 resistencias + voltímetro)
+        \draw (9, 7) to[american resistor, l={$R_1$}] (9, 4);
+        \draw (11, 7) to[american resistor, l={$R_2$}] (11, 4);
+        \draw (13, 7) to[american resistor, l={$R_3$}] (13, 4);
+        \draw (15, 7) to[voltmeter, l={$V_T$}] (15, 4);
+        
+        % Camino de retorno a la fuente
+        \draw (11, 4) |- (6, 4) -| (6, 6);
+        
+        \node[circ](N1) at (11, 7){} node[anchor=south east] at (N1.north west){$B$};
+        \node[circ](N2) at (11, 4){} node[anchor=north east] at (N2.south west){$A$};
+    \end{tikzpicture}
+    \caption{Circuito para la medición de la resistencia equivalente en paralelo.}
+    \label{fig:paralelo}
+\end{figure}
+
+\subsection*{Experiencia 2: Leyes de Kirchhoff}
+Para comprobar experimentalmente las leyes de Kirchhoff, armamos un circuito compuesto por dos mallas. Utilizamos tres resistores ($R_1$, $R_2$ y $R_3$) y dos fuentes de tensión continua ($V_{S1}$ y $V_{S2}$). Colocamos tres amperímetros, uno en cada rama principal del circuito, para registrar las corrientes simultáneamente (Figura 3).
+
+Posteriormente, repetimos el procedimiento de medición invirtiendo la polaridad de la fuente de tensión $V_{S2}$, con el objetivo de observar y corroborar el cambio en el sentido y magnitud de las corrientes (Figura 4).
+
+\begin{figure}[H]
+    \centering
+    \begin{tikzpicture}[transform shape]
+        % Paths, nodes and wires:
+        \draw (1, 4) to[battery, l={$V_{S1}$}] (1, 3);
+        \draw (11, 3) to[battery, l={$V_{S2}$}] (11, 4);
+        \draw (1, 6) to[ammeter, l={$I_{R1}$}] (3, 6);
+        \draw (9, 6) to[ammeter, mirror, invert, l={$I_{R2}$}] (7, 6);
+        \draw (6, 3) to[ammeter, l={$I_{R3}$}] (6, 1);
+        \draw (3, 6) to[american resistor, l={$R_1$}] (5, 6);
+        \draw (9, 6) to[american resistor, l={$R_2$}] (11, 6);
+        \draw (6, 5) to[american resistor, l={$R_3$}] (6, 3);
+        \draw (5, 6) -- (7, 6);
+        \draw (6, 5) -| (6, 6);
+        \draw (11, 6) -- (11, 4);
+        \draw (11, 3) |- (1, 1) -| (1, 3);
+        \draw (1, 4) -| (1, 6);
+    \end{tikzpicture}
+    \caption{Esquema del circuito de dos mallas empleado para verificar las Leyes de Kirchhoff.}
+    \label{fig:kirchhoff1}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \begin{tikzpicture}[transform shape]
+        % Paths, nodes and wires:
+        \draw (1, 4) to[battery, l={$V_{S1}$}] (1, 3);
+        % Invertimos los nodos de la batería Vs2 (de 11,3 -> 11,4 a 11,4 -> 11,3)
+        \draw (11, 4) to[battery, l={$V_{S2}$}] (11, 3); 
+        \draw (1, 6) to[ammeter, l={$I_{R1}$}] (3, 6);
+        \draw (9, 6) to[ammeter, mirror, invert, l={$I_{R2}$}] (7, 6);
+        \draw (6, 3) to[ammeter, l={$I_{R3}$}] (6, 1);
+        \draw (3, 6) to[american resistor, l={$R_1$}] (5, 6);
+        \draw (9, 6) to[american resistor, l={$R_2$}] (11, 6);
+        \draw (6, 5) to[american resistor, l={$R_3$}] (6, 3);
+        \draw (5, 6) -- (7, 6);
+        \draw (6, 5) -| (6, 6);
+        \draw (11, 6) -- (11, 4);
+        \draw (11, 3) |- (1, 1) -| (1, 3);
+        \draw (1, 4) -| (1, 6);
+    \end{tikzpicture}
+    \caption{Circuito de dos mallas con la polaridad de la fuente $V_{S2}$ invertida.}
+    \label{fig:kirchhoff2}
+\end{figure}
+
+\subsection*{Experiencia 3: Máxima transferencia de potencia (Simulación)}
+
+Debido a la indisponibilidad del instrumental físico requerido para esta etapa, la experiencia se llevó a cabo mediante simulación computacional utilizando el software LTSpice. Se modeló una fuente de tensión real de $\epsilon = \SI{1.5}{V}$ en serie con una resistencia interna $R_{int} = \SI{5}{\ohm}$, conectada a una resistencia de carga variable $R_L$ mediante un barrido paramétrico. En la Figura \ref{fig:ltspice} se detalla el esquema del circuito equivalente simulado.
+
+Para replicar las condiciones propuestas en la guía de trabajos prácticos, se utilizó el comando \texttt{.step param} de LTSpice, el cual permite variar de forma continua el valor de $R_L$ dentro de un rango determinado. A partir de la simulación, se relevaron los datos de caída de tensión sobre la carga ($V_{RL}$) y la corriente circulante ($I_{RL}$) para cada paso del barrido. Esto nos permitió posteriormente calcular la potencia disipada y graficar las curvas correspondientes para hallar el punto exacto de máxima transferencia de energía.
+
+\begin{figure}[H]
+    \centering
+    \begin{tikzpicture}[transform shape]
+        % Paths, nodes and wires:
+        \draw (4.5, 2.25) to[battery1, l={$\epsilon$}] (4.5, -1);
+        \draw (4.5, 2.25) to[american resistor, l={$R_{int}$}] (8.25, 2.25);
+        \draw (8.25, 2.25) to[american resistor, l={$R_{L}$}] (8.25, -1);
+        \draw (4.5, -1) -- (8.25, -1);
+    \end{tikzpicture}
+    \caption{Esquema del circuito simulado en LTSpice para la comprobación del teorema de máxima transferencia de potencia. Se representa la fuente de tensión real ($\epsilon$ y $R_{int}$) conectada a la carga variable ($R_L$).}
+    \label{fig:ltspice}
+\end{figure}
+
 % ==================== 5. DATOS OBTENIDOS ====================
 \section{Datos obtenidos: discusión y cálculo de errores}
 
-\subsection{Parte 1: Resistencias y Ley de Ohm}
-Medimos las resistencias proporcionadas utilizando un óhmetro y luego calculamos su valor de forma indirecta midiendo tensión y corriente. Obtuvimos los siguientes datos:
+A continuación, se presentan los resultados obtenidos a partir de las mediciones realizadas durante la experiencia práctica.
 
+\subsection{Parte 1: Resistencias y Ley de Ohm}
+En la tabla \ref{tab:ResistenciasParte1} se comparan los valores nominales de las resistencias a partir del código de colores, con las mediciones directamente obtenidas con el óhmetro, y los resultados calculados a partir de las mediciones de diferencia de potencial y corriente empleando los circuitos de conexionado corto \ref{fig:corta} para las primeras 3 resistencias, y ambos conexionados corto y largo \ref{fig:larga}. Cabe aclarar que las resistencias internas propias del instrumental pueden inferir en los resultados obtenidos. Es por eso que adicionalmente, se midieron las resistencias internas del multimetro en modo amperimetro y modo voltimetro para luego incorporarlas a una nueva ecuación.
+
+\begin{tikzpicture}[transform shape]
+	% Paths, nodes and wires:
+	\draw (4, 2) to[battery1, l={$V_s$}] (3.995, 10);
+	\draw (5.995, 10) to[ammeter] (5.995, 8);
+	\draw (7.995, 6) to[voltmeter] (7.995, 4);
+	\draw (6, 6) to[american resistor, l={$R_{ba}$}] (5.995, 2);
+	\draw (7.995, 4) to[american resistor, l={$R_V$}] (7.995, 2);
+	\draw (5.995, 8) to[american resistor, l={$R_A$}] (6, 6);
+	\draw (3.995, 10) to[switch] (5.995, 10);
+	\draw (4, 2) -- (8, 2);
+	\node[circ](N1) at (6, 6){} node[anchor=north east] at (N1.south west){$B$};
+	\draw (7.995, 6) -- (6, 6);
+	\node[circ](N2) at (5.995, 2){} node[anchor=south east] at (N2.north west){$A$};
+\end{tikzpicture}
+
+A partir de este modelo, se puede deducir que la resistencia total del circuito.
+
+\begin {equation}
+R_{Total} = R_A + (R_V^{-1} + R_A^{-1})^{-1}
+\label {eq:RTotal}
+\end {equation}
+
+Luego, empleando la ecuación \ref{eq:LeyDeOhm}, se obtiene
+
+\begin {equation}
+R_{ba} = ((\frac{V}{I} - R_A)^{-1} - R_V^{-1})^{-1}
+\label {eq:Rba}
+\end {equation}
+
+De esta forma, mediante el circuito del conexionado corto, se puede encontrar el valor del resistor de interés con mayor precisión. Cabe mencionar que a pesar de incluir más variables, se siguen desestimando otros factores que influyen 
 \begin{table}[H]
     \centering
     \begin{tabular}{cccccc}
@@ -187,6 +365,7 @@ Medimos las resistencias proporcionadas utilizando un óhmetro y luego calculamo
     \bottomrule
     \end{tabular}
     \caption{Comparación de resistencias medidas y calculadas.}
+    \label {tab:ResistenciasParte1}
 \end{table}
 
 Para las asociaciones en serie y paralelo de las resistencias de 150, 220 y 330 \si{\ohm}, los valores obtenidos fueron:
@@ -216,7 +395,62 @@ Al medir las corrientes con los multímetros, registramos:
 \end{itemize}
 
 \subsection{Parte 3: Máxima transferencia de potencia}
-[COMPLETAR: Insertar aquí los gráficos obtenidos con Logger Pro / Excel de V vs I, y de Potencia vs Resistencia de carga. Mencionar la ecuación de la recta de ajuste y los valores de $\epsilon$ y $r_{int}$ extraídos.]
+
+COMPLETAR CON DESARROLLO ANALITICO DEL TEOREMA DE MAXIMA TRANSFERENCIA DE POTENCIA.
+
+Esta etapa se llevó a cabo íntegramente mediante simulación computacional en LTSpice. Para ello, se configuró el modelo de la fuente real con una fuerza electromotriz $\epsilon = 1.5\text{ V}$ y una resistencia interna teórica $R_{int} = 5\ \Omega$. 
+
+Mediante un análisis de barrido paramétrico (\textit{.step param}), se varió el valor de la resistencia de carga $R_L$ desde $0.1\ \Omega$ hasta $10\ \Omega$ y se registraron los valores de tensión e intensidad para calcular la potencia transferida a la carga. 
+
+A partir de los datos exportados de la simulación, se generó el gráfico de la Figura \ref{fig:potencia_vs_r}, donde se representa la curva de potencia disipada en función de la resistencia de carga.
+
+\begin{figure}[H]
+    \centering
+    \begin{tikzpicture}
+        \begin{axis}[
+            title={\textbf{Potencia transferida en función de la resistencia de carga}},
+            xlabel={Resistencia de carga $R_L$ [$\Omega$]},
+            ylabel={Potencia disipada $P$ [W]},
+            grid=both,
+            minor tick num=1,
+            width=0.85\textwidth,
+            height=8cm,
+            mark=none,
+            smooth,
+            ymin=0, ymax=0.12,
+            xmin=0, xmax=10
+        ]
+        
+        % Datos extraídos de LTSpice (muestreados cada 0.2 ohms para fluidez visual)
+        \addplot[blue, thick] coordinates {
+            (0.2, 0.01664) (0.4, 0.03086) (0.6, 0.04304) (0.8, 0.05350) 
+            (1.0, 0.06250) (1.2, 0.07023) (1.4, 0.07690) (1.6, 0.08264) 
+            (1.8, 0.08758) (2.0, 0.09183) (2.2, 0.09548) (2.4, 0.09861) 
+            (2.6, 0.10128) (2.8, 0.10355) (3.0, 0.10546) (3.2, 0.10707) 
+            (3.4, 0.10841) (3.6, 0.10951) (3.8, 0.11040) (4.0, 0.11111) 
+            (4.2, 0.11164) (4.4, 0.11204) (4.6, 0.11230) (4.8, 0.11245) 
+            (5.0, 0.11250) (5.2, 0.11245) (5.4, 0.11233) (5.6, 0.11213) 
+            (5.8, 0.11188) (6.0, 0.11157) (6.2, 0.11120) (6.4, 0.11080) 
+            (6.6, 0.11035) (6.8, 0.10988) (7.0, 0.10937) (7.2, 0.10884) 
+            (7.4, 0.10828) (7.6, 0.10770) (7.8, 0.10711) (8.0, 0.10650) 
+            (8.2, 0.10588) (8.4, 0.10525) (8.6, 0.10461) (8.8, 0.10396) 
+            (9.0, 0.10331) (9.2, 0.10265) (9.4, 0.10199) (9.6, 0.10133) 
+            (9.8, 0.10066) (10.0, 0.10000)
+        };
+        
+        % Marcador del punto de máxima transferencia de potencia
+        \draw[dashed, red, thick] (axis cs:5,0) -- (axis cs:5,0.1125);
+        \draw[dashed, red, thick] (axis cs:0,0.1125) -- (axis cs:5,0.1125);
+        \filldraw[red] (axis cs:5,0.1125) circle (2pt);
+        \node[anchor=south west, text=red, font=\small, fill=white, inner sep=2pt] at (axis cs:5.1,0.09) {Máximo: $P = 0.1125\text{W}$ en $R_L = 5\ \Omega$};
+        
+        \end{axis}
+    \end{tikzpicture}
+    \caption{Curva de potencia disipada en función de la resistencia de carga, a partir de datos obtenidos de LTSpice.}
+    \label{fig:potencia_vs_r}
+\end{figure}
+
+Al analizar la curva, se evidencia un comportamiento en forma de campana que alcanza su valor máximo en la coordenada $(5\ \Omega ; 0.1125\text{ W})$. Este pico máximo concuerda con total exactitud con el valor de la resistencia interna configurado previamente ($R_{int} = 5\ \Omega$). Con esta evidencia obtenida a través de la simulación, se logra comprobar el "Teorema de la transferencia de Máxima Potencia", el cual establece que una fuente real de tensión entrega la máxima cantidad de energía posible a un circuito cuando la resistencia de la carga conectada iguala a la propia resistencia interna de la fuente.
 
 % ==================== 6. ANÁLISIS DE RESULTADOS ====================
 \section{Análisis de los resultados obtenidos}
