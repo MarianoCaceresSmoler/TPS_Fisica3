@@ -1,3 +1,4 @@
+
 \documentclass[11pt]{article}
 \usepackage[margin=1in]{geometry}
 
@@ -163,6 +164,7 @@ R_{int} + R_L - 2R_L = 0 \quad \Longrightarrow \quad R_L = R_{int}
 \end{equation}
 
 De esta manera, queda demostrado que el pico máximo de potencia se alcanza exclusivamente cuando la resistencia conectada al circuito coincide con la resistencia interna del generador.
+
 % ==================== 4. INSTRUMENTOS Y ELEMENTOS EMPLEADOS ====================
 \section{Instrumentos y elementos empleados}
 Para la realización de los experimentos, utilizamos los siguientes materiales:
@@ -423,12 +425,17 @@ A continuación, se presentan las comparaciones entre los valores medidos en el 
 
 \begin{table}[H]
     \centering
-    \begin{tabular}{|l|c|c|c|}
-        \hline
-        \textbf{Parámetro} & \textbf{Valor Teórico [mA]} & \textbf{Valor Medido [mA]} & \textbf{Error Relativo [\%]} \\ \hline
-        Corriente $I_1$    & 35.42                       & 35.60                      & 0.51\%                     \\ \hline
-        Corriente $I_2$    & 16.97                       & 16.86                      & 0.65\%                      \\ \hline
-        Corriente Central  & 18.45                       & 18.40                      & 0.27\%                     \\ \hline
+    \begin{tabular}{l|ccc}
+        \toprule
+        \textbf{Parámetro} & \textbf{Valor Teórico} & \textbf{Valor Medido} & \textbf{Error Relativo [\%]} \\ 
+        \midrule
+        Corriente $I_1$ [mA]    & 35.42                       & 35.60                      & 0.51\%                     \\ 
+        Corriente $I_2$ [mA]    & 16.97                       & 16.86                      & 0.65\%                     \\ 
+        Corriente Central [mA]  & 18.45                       & 18.40                      & 0.27\%                     \\ 
+        \midrule
+        Potencia $P_1$ [mW]     & 331.89                      & 333.57                     & 0.51\%                     \\
+        Potencia $P_2$ [mW]     & 26.20                       & 26.03                      & 0.65\%                     \\
+        \bottomrule
     \end{tabular}
     \caption{Resultados para el Circuito Original (Fuentes en oposición).}
     \label{tab:kirchhoff_1}
@@ -436,28 +443,61 @@ A continuación, se presentan las comparaciones entre los valores medidos en el 
 
 \begin{table}[H]
     \centering
-    \begin{tabular}{|l|c|c|c|}
-        \hline
-        \textbf{Parámetro} & \textbf{Valor Teórico [mA]} & \textbf{Valor Medido [mA]} & \textbf{Error Relativo [\%]} \\ \hline
-        Corriente $I_1$    & 31.04                       & 30.20                      & 2.78\%                     \\ \hline
-        Corriente $I_2$    & 9.61                        & 9.15                       & 5.03\%                     \\ \hline
-        Corriente Central  & 21.43                       & 22.10                      & 3.03\%                     \\ \hline
+    \begin{tabular}{l|ccc}
+        \toprule
+        \textbf{Parámetro} & \textbf{Valor Teórico} & \textbf{Valor Medido} & \textbf{Error Relativo [\%]} \\ 
+        \midrule
+        Corriente $I_1$ [mA]    & 31.04                       & 30.20                      & 2.78\%                     \\ 
+        Corriente $I_2$ [mA]    & 9.61                        & 9.15                       & 5.03\%                     \\ 
+        Corriente Central [mA]  & 21.43                       & 22.10                      & 3.03\%                     \\ 
+        \midrule
+        Potencia $P_1$ [mW]     & 290.84                      & 282.97                     & 2.78\%                     \\
+        Potencia $P_2$ [mW]     & 14.84                       & 14.13                      & 5.03\%                     \\
+        \bottomrule
     \end{tabular}
     \caption{Resultados para el Circuito con Fuente de 1.5V Invertida.}
     \label{tab:kirchhoff_2}
 \end{table}
 
+A partir de las corrientes registradas empíricamente en cada rama y los valores de las resistencias ($R_1 = 150\ \Omega$, $R_2 = 220\ \Omega$, $R_3 = 330\ \Omega$), se calcularon analíticamente las caídas de potencial aplicando la Ley de Ohm (Ecuación \ref{eq:LeyDeOhm}).
+
+Estos resultados matemáticos se contrastaron con las verificaciones directas de tensión realizadas colocando el multímetro en paralelo sobre cada componente.
+
+\begin{table}[H]
+    \centering
+    \begin{tabular}{l|ccc}
+        \toprule
+        \textbf{Resistor} & \textbf{Voltaje Analítico [V]} & \textbf{Voltaje Medido [V]} & \textbf{Error Relativo [\%]} \\ 
+        \midrule
+        \multicolumn{4}{c}{\textbf{Circuito Original (Fuentes en oposición)}} \\
+        \midrule
+        Resistor $R_1$ & 5.340 & 5.330 & 0.19\% \\ 
+        Resistor $R_2$ & 4.048 & 4.030 & 0.44\% \\ 
+        Resistor $R_3$ & 5.564 & 5.550 & 0.25\% \\ 
+        \midrule
+        \multicolumn{4}{c}{\textbf{Circuito con Fuente de 1.5V Invertida}} \\
+        \midrule
+        Resistor $R_1$ & 4.530 & 4.510 & 0.44\% \\ 
+        Resistor $R_2$ & 4.862 & 4.850 & 0.25\% \\ 
+        Resistor $R_3$ & 3.020 & 3.010 & 0.33\% \\ 
+        \bottomrule
+    \end{tabular}
+    \caption{Comparación de caídas de potencial sobre las resistencias.}
+    \label{tab:caidas_potencial}
+\end{table}
+
 \subsubsection{Análisis de resultados y discusión de errores}
 
-Al contrastar los valores experimentales con los teóricos, se observan discrepancias que, si bien pueden ser notorias en términos porcentuales (fundamentalmente para la experiencia con la fuente invertida), no invalidan las leyes de Kirchhoff sino que exponen las limitaciones del modelo ideal.
+Al analizar las Tablas \ref{tab:kirchhoff_1}, \ref{tab:kirchhoff_2} y \ref{tab:caidas_potencial}, se evidencia que el comportamiento empírico del circuito se ajusta sólidamente al modelo teórico. En la configuración original, las corrientes medidas presentaron errores relativos ínfimos (menores al 1\%), mientras que al invertir la fuente el error máximo fue del 5.03\%. Asimismo, las caídas de potencial medidas sobre las resistencias demostraron gran precisión, con desviaciones menores al 0.5\%, justificadas principalmente por la leve pérdida de energía en los cables de conexión y contactos del tablero.
 
-La fuente de error más significativa identificada fue la resistencia interna del instrumental. El modelo teórico asume amperímetros ideales ($R_a = 0\ \Omega$); sin embargo, el uso multímetros reales introduce resistencias adicionales en cada rama. Esto se comprobó durante la experiencia al usar 2 multímetros en simultáneo al notar que el cambio de escala en un multímetro (que altera su resistencia de derivación interna) modificaba instantáneamente las lecturas del circuito.
+Las pequeñas discrepancias halladas respecto al modelo matemático se atribuyen a tres fuentes de error principales que exponen las limitaciones de asumir componentes ideales:
+\begin{enumerate}
+    \item \textbf{Resistencia interna del instrumental:} La interconexión de multímetros reales añade una carga resistiva parásita en serie a cada rama. Esto se comprobó empíricamente al modificar la escala de un multímetro, lo cual alteró su resistencia interna y provocó un cambio instantáneo en todas las lecturas.
+    \item \textbf{Tolerancia de los componentes:} Los resistores comerciales utilizados poseen una tolerancia de fabricación del 5\%, por lo que sus valores reales difieren de los utilizados en el cálculo analítico.
+    \item \textbf{Caída de tensión en las fuentes:} Las tensiones iniciales se midieron en vacío. Al cerrar el circuito, la propia demanda de corriente provoca una caída de tensión sobre la resistencia interna de las pilas, entregando un voltaje efectivo ligeramente menor al teórico.
+\end{enumerate}
 
-En segundo lugar, la caída de tensión en las fuentes bajo carga también afecta los resultados. Las tensiones $V_1$ y $V_2$ se midieron inicialmente en vacío; al cerrar el circuito, la resistencia interna de las pilas provoca que la diferencia de potencial efectiva entregada sea menor a la nominal. A esto se suma la tolerancia de los resistores ($5\%$), lo que genera que los valores reales de $R$ difieran de los valores utilizados en el sistema de ecuaciones.
-
-Pese a estos factores, la Ley de los Nodos se verificó con gran precisión: en ambos casos, la suma algebraica de las corrientes medidas en las ramas externas ($I_1$ e $I_2$) coincidió casi perfectamente con el valor registrado en la rama central ($I_{central} \approx |I_1 - I_2|$). Esto demuestra que, incluso con instrumental no ideal, el principio de conservación de la carga se cumple estrictamente en el sistema.
-
-COMPLETAR CON CALCULO DE POTENCIA Y QUE PASO CUANDO DIMOS VUELTA LA FUENTE
+Pese a estas limitaciones sistemáticas, tanto la \textbf{Ley de los Nodos} como la \textbf{Ley de las Mallas} se verificaron con gran validez. Por un lado, la conservación de la carga se comprobó empíricamente al observar que, en ambos circuitos, la diferencia de las corrientes aportadas por las ramas externas coincide casi perfectamente con la corriente medida en el nodo central. Por otro lado, la conservación de la energía quedó en evidencia al verificar que las caídas de potencial sobre los resistores compensan de manera precisa las tensiones entregadas por las fuentes en cada lazo cerrado. Esto demuestra que los principios fundamentales de Kirchhoff rigen el sistema de manera estricta.
 
 \subsection{Parte 3: Máxima transferencia de potencia}
 
@@ -466,7 +506,6 @@ Esta etapa se llevó a cabo íntegramente mediante simulación computacional en 
 Mediante un análisis de barrido paramétrico (\textit{.step param}), se varió el valor de la resistencia de carga $R_L$ desde $0.1\ \Omega$ hasta $10\ \Omega$ y se registraron los valores de tensión e intensidad para calcular la potencia transferida a la carga.
 
 A partir de los datos exportados de la simulación, se generó el gráfico de la Figura \ref{fig:potencia_vs_r}, donde se representa la curva de potencia disipada en función de la resistencia de carga.
-
 \begin{figure}[H]
     \centering
     \begin{tikzpicture}
