@@ -22,7 +22,7 @@
 % ==================== CARÁTULA ====================
 \begin{titlepage}
     \centering
-    
+
     % LOGO
     % \includegraphics[width=0.45\textwidth]{ITBA.PNG}\par % Descomentar si tienes la imagen
     \vspace{1cm}
@@ -62,28 +62,28 @@
     {\large \textbf{Fecha de realización:} 10/04/2026\par}
     {\large \textbf{Fecha de entrega:} 17/04/2026\par}
     \end{flushleft}
-    
+
     \vspace{0.6cm}
-    
+
     % SECTOR DE EVALUACIÓN PARA EL DOCENTE
     \begin{flushleft}
     {\large\textbf{Observaciones del docente:}}\par
     \vspace{0.2cm}
-    \framebox[\linewidth]{\rule{0pt}{3cm}} 
-    
+    \framebox[\linewidth]{\rule{0pt}{3cm}}
+
     \vspace{0.8cm}
-    
+
     \begin{tabular}{@{}p{0.45\linewidth} p{0.45\linewidth}@{}}
         \textbf{Fecha de aprobación:} \hrulefill & \textbf{Firma:} \hrulefill \\
     \end{tabular}
     \end{flushleft}
-    
+
     \vspace{0.5cm}
 \end{titlepage}
 
 % ==================== 2. OBJETIVOS Y RESUMEN ====================
 \section{Objetivos y Resumen}
-\textbf{Objetivos:} 
+\textbf{Objetivos:}
 \begin{itemize}
     \item Aprender a medir diferencias de potencial, intensidad de corriente y resistencias usando multímetros, y aplicar la ley de Ohm.
     \item Comprobar experimentalmente las fórmulas de asociación en serie y paralelo.
@@ -93,16 +93,16 @@
 
 \textbf{Resumen:}
 
-En este trabajo práctico se armaron distintos circuitos de corriente continua utilizando resistores, fuentes de alimentación y multímetros para medir las magnitudes eléctricas. Se verificaron las leyes fundamentales de la electricidad, como la ley de Ohm y las leyes de Kirchhoff, a través de mediciones directas y cálculos teóricos. 
+En este trabajo práctico se armaron distintos circuitos de corriente continua utilizando resistores, fuentes de alimentación y multímetros para medir las magnitudes eléctricas. Se verificaron las leyes fundamentales de la electricidad, como la ley de Ohm y las leyes de Kirchhoff, a través de mediciones directas y cálculos teóricos.
 
-Además, se simuló y modeló una fuente de tensión real considerando su resistencia interna y se comprobó el Teorema de transferencia de máxima potencia mediante la variación de la resistencia de carga y el análisis de la potencia disipada. 
+Además, se simuló y modeló una fuente de tensión real considerando su resistencia interna y se comprobó el Teorema de transferencia de máxima potencia mediante la variación de la resistencia de carga y el análisis de la potencia disipada.
 
 Los resultados obtenidos mostraron una buena concordancia entre las mediciones experimentales y los cálculos teóricos, aunque se identificaron algunas discrepancias atribuibles a la tolerancia de los componentes y a las limitaciones de los instrumentos de medición. En general, el trabajo permitió consolidar los conceptos fundamentales de circuitos eléctricos y su aplicación práctica.
 
 % ==================== 3. INTRODUCCIÓN TEÓRICA ====================
 \section{Introducción teórica}
 
-El presente trabajo práctico se fundamenta en el estudio de las leyes fundamentales que rigen los circuitos de corriente continua, así como en el análisis del comportamiento de fuentes reales de tensión. 
+El presente trabajo práctico se fundamenta en el estudio de las leyes fundamentales que rigen los circuitos de corriente continua, así como en el análisis del comportamiento de fuentes reales de tensión.
 
 \subsection{Ley de Ohm y Asociación de Resistencias}
 La \textbf{Ley de Ohm} establece que la diferencia de potencial ($V_a - V_b$) aplicada entre los extremos de un conductor metálico es directamente proporcional a la intensidad de corriente $I$ que circula por él. La constante de proporcionalidad es la resistencia eléctrica $R$ del material:
@@ -122,7 +122,7 @@ Para el análisis analítico de circuitos más complejos que no pueden reducirse
     \begin{equation}
     \sum_{i=1}^{n} I_i = 0
     \end{equation}
-    
+
     \item \textbf{Ley de las mallas (Conservación de la energía):} Determina que, en cualquier camino cerrado (malla) de un circuito, la suma algebraica de las diferencias de potencial es nula:
     \begin{equation}
     \sum_{i=1}^{m} V_i = 0
@@ -136,7 +136,7 @@ Una fuente de tensión ideal mantiene una diferencia de potencial constante inde
 V = \epsilon - I \cdot R_{int}
 \end{equation}
 
-El \textbf{Teorema de la transferencia de máxima potencia} establece que la potencia eléctrica transferida por una fuente real a una resistencia de carga ($R_L$) será máxima cuando el valor de dicha carga se iguale al valor de la resistencia interna de la fuente. 
+El \textbf{Teorema de la transferencia de máxima potencia} establece que la potencia eléctrica transferida por una fuente real a una resistencia de carga ($R_L$) será máxima cuando el valor de dicha carga se iguale al valor de la resistencia interna de la fuente.
 
 Para demostrarlo analíticamente, partimos de la ecuación de potencia disipada por la carga $P = I^2 \cdot R_L$. Reemplazando la corriente $I$ por la expresión del circuito en serie, obtenemos la potencia en función de $R_L$:
 
@@ -231,28 +231,28 @@ Posteriormente, comprobamos la validez de las ecuaciones teóricas para la asoci
     \begin{tikzpicture}[transform shape]
         % Paths, nodes and wires:
         \draw (6, 6) to[battery1, l={$V$}] (6, 8);
-        
+
         % Amperímetro
         \draw (11, 9) to[ammeter, l={$I_T$}] (11, 7);
-        
+
         % Resistencias en serie
         \draw (11, 7) to[american resistor, l={$R_1$}] (11, 5);
         \draw (11, 5) to[american resistor, l={$R_2$}] (11, 3);
         \draw (11, 3) to[american resistor, l={$R_3$}] (11, 1);
-        
+
         % Voltímetro (conexión corta abarcando la serie completa)
         \draw (13, 7) to[voltmeter, l={$V_T$}] (13, 1);
         \draw (11, 7) -- (13, 7);
         \draw (11, 1) -- (13, 1);
-        
+
         % Camino de retorno a la fuente
         \draw (13, 1) |- (6, 1) -| (6, 6);
-        
+
         % Interruptor y cable superior
         \draw (7.005, 9) to[switch] (8.005, 9);
         \draw (6, 8) -| (6, 9) -- (7, 9) -- (7.005, 9);
         \draw (8.005, 9) -- (11, 9);
-        
+
         \node[circ](N1) at (11, 7){} node[anchor=north east] at (N1.south west){$B$};
         \node[circ](N2) at (11, 1){} node[anchor=south east] at (N2.north west){$A$};
     \end{tikzpicture}
@@ -265,26 +265,26 @@ Posteriormente, comprobamos la validez de las ecuaciones teóricas para la asoci
     \begin{tikzpicture}[transform shape]
         % Paths, nodes and wires:
         \draw (6, 6) to[battery1, l={$V$}] (6, 8);
-        
+
         % Interruptor, cable superior y amperímetro (mide I total)
         \draw (6, 8) -| (6, 9) -- (7, 9) -- (7.005, 9);
         \draw (7.005, 9) to[switch] (8.005, 9);
         \draw (8.005, 9) -- (11, 9);
         \draw (11, 9) to[ammeter, l={$I_T$}] (11, 7);
-        
+
         % Nodos principales superior e inferior de la configuración en paralelo
         \draw (9, 7) -- (15, 7); % Riel superior
         \draw (9, 4) -- (15, 4); % Riel inferior
-        
+
         % Ramas en paralelo (3 resistencias + voltímetro)
         \draw (9, 7) to[american resistor, l={$R_1$}] (9, 4);
         \draw (11, 7) to[american resistor, l={$R_2$}] (11, 4);
         \draw (13, 7) to[american resistor, l={$R_3$}] (13, 4);
         \draw (15, 7) to[voltmeter, l={$V_T$}] (15, 4);
-        
+
         % Camino de retorno a la fuente
         \draw (11, 4) |- (6, 4) -| (6, 6);
-        
+
         \node[circ](N1) at (11, 7){} node[anchor=south east] at (N1.north west){$B$};
         \node[circ](N2) at (11, 4){} node[anchor=north east] at (N2.south west){$A$};
     \end{tikzpicture}
@@ -325,7 +325,7 @@ Posteriormente, repetimos el procedimiento de medición invirtiendo la polaridad
         % Paths, nodes and wires:
         \draw (1, 4) to[battery, l={$V_{S1}$}] (1, 3);
         % Invertimos los nodos de la batería Vs2 (de 11,3 -> 11,4 a 11,4 -> 11,3)
-        \draw (11, 4) to[battery, l={$V_{S2}$}] (11, 3); 
+        \draw (11, 4) to[battery, l={$V_{S2}$}] (11, 3);
         \draw (1, 6) to[ammeter, l={$I_{R1}$}] (3, 6);
         \draw (9, 6) to[ammeter, mirror, invert, l={$I_{R2}$}] (7, 6);
         \draw (6, 3) to[ammeter, l={$I_{R3}$}] (6, 1);
@@ -370,19 +370,19 @@ A continuación, se presentan los resultados obtenidos a partir de las medicione
 
 \subsubsection{Comparación de valores de resistencias hallados por diferentes métodos}
 
-En la tabla \ref{tab:ResistenciasParte1} se comparan los valores nominales de las resistencias a partir del código de colores, con las mediciones directamente obtenidas con el óhmetro, y los resultados calculados a partir de las mediciones de diferencia de potencial y corriente empleando los circuitos de conexionado corto (figura \ref{fig:corta}) para las primeras 3 resistencias, y ambos conexionados corto y largo (figura \ref{fig:larga}). Cabe aclarar que las resistencias internas propias del instrumental pueden inferir en los resultados obtenidos. 
+En la tabla \ref{tab:ResistenciasParte1} se comparan los valores nominales de las resistencias a partir del código de colores, con las mediciones directamente obtenidas con el óhmetro, y los resultados calculados a partir de las mediciones de diferencia de potencial y corriente empleando los circuitos de conexionado corto (figura \ref{fig:corta}) y largo (figura \ref{fig:larga}). Cabe aclarar que las resistencias internas propias del instrumental pueden inferir en los resultados obtenidos.
 
 \begin{table}[H]
     \centering
-    \begin{tabular}{lccccc}
+    \begin{tabular}{c|ccccc}
     \toprule
-    \textbf{Resistor} & \textbf{R Nominal [\si{\ohm}]} & \textbf{R Medida [\si{\ohm}]} & \textbf{V medido [\si{V}]} & \textbf{I medida [\si{mA}]} & \textbf{Cálculo ($V/I$) [\si{\ohm}]} \\
+    \textbf{Resistor} & \textbf{Nominal [\si{\ohm}]} & \textbf{Medida [\si{\ohm}]} & \textbf{Tensión [\si{V}]} & \textbf{Corriente [\si{mA}]} & \textbf{Cálculo ($V/I$) [\si{\ohm}]} \\
     \midrule
     1 & 150 & 148 & 1.436 & 9.77 & 146.98 \\
     2 & 220 & 218 & 1.470 & 6.75 & 217.78 \\
     3 & 330 & 325 & 1.490 & 4.60 & 323.91 \\
-    4 (Conexionado corto) & \SI{10}{\mega\ohm} & \SI{10.04}{\mega\ohm} & 9.33 & \SI{1.74}{\micro\ampere} & \SI{5.362}{M\ohm} \\
-    4 (Conexionado largo) & \SI{10}{\mega\ohm} & \SI{10.04}{\mega\ohm} & 9.33 & \SI{0.9}{\micro\ampere} & \SI{10.37}{M\ohm} \\
+    4 (corto) & \SI{10}{\mega\ohm} & \SI{10.04}{\mega\ohm} & 9.33 & \SI{1.74}{\micro\ampere} & \SI{5.362}{M\ohm} \\
+    4 (largo) & & & 9.33 & \SI{0.9}{\micro\ampere} & \SI{10.37}{M\ohm} \\
     \bottomrule
     \end{tabular}
     \caption{Comparación de resistencias medidas y calculadas.}
@@ -395,7 +395,7 @@ Para las asociaciones en serie y paralelo de las resistencias de 150, 220 y 330 
     \centering
     \begin{tabular}{lccccc}
     \toprule
-    \textbf{Conexión} & \textbf{$R_{EQ}$ Nominal} & \textbf{$R_{EQ}$ Medida} & \textbf{V [\si{V}]} & \textbf{I [\si{}\milli\ampere]} & \textbf{$R_{EQ}$ Calculada ($V/I$)} \\
+    \textbf{Conexión} & \textbf{$R_{EQ}$ Nominal} & \textbf{$R_{EQ}$ Medida} & \textbf{V [\si{V}]} & \textbf{I [\si{\milli\ampere}]} & \textbf{$R_{EQ}$ Calculada ($V/I$)} \\
     \midrule
     Serie & \SI{700}{\ohm} & \SI{689}{\ohm} & 1.517 & 2.19 & \SI{692.69}{\ohm} \\
     Paralelo & \SI{68.9}{\ohm} & \SI{68.95}{\ohm} & 1.265 & 18.32 & \SI{69.05}{\ohm} \\
@@ -461,9 +461,9 @@ COMPLETAR CON CALCULO DE POTENCIA Y QUE PASO CUANDO DIMOS VUELTA LA FUENTE
 
 \subsection{Parte 3: Máxima transferencia de potencia}
 
-Esta etapa se llevó a cabo íntegramente mediante simulación computacional en LTSpice. Para ello, se configuró el modelo de la fuente real con una fuerza electromotriz $\epsilon = 1.5\text{ V}$ y una resistencia interna teórica $R_{int} = 5\ \Omega$. 
+Esta etapa se llevó a cabo íntegramente mediante simulación computacional en LTSpice. Para ello, se configuró el modelo de la fuente real con una fuerza electromotriz $\epsilon = 1.5\text{ V}$ y una resistencia interna teórica $R_{int} = 5\ \Omega$.
 
-Mediante un análisis de barrido paramétrico (\textit{.step param}), se varió el valor de la resistencia de carga $R_L$ desde $0.1\ \Omega$ hasta $10\ \Omega$ y se registraron los valores de tensión e intensidad para calcular la potencia transferida a la carga. 
+Mediante un análisis de barrido paramétrico (\textit{.step param}), se varió el valor de la resistencia de carga $R_L$ desde $0.1\ \Omega$ hasta $10\ \Omega$ y se registraron los valores de tensión e intensidad para calcular la potencia transferida a la carga.
 
 A partir de los datos exportados de la simulación, se generó el gráfico de la Figura \ref{fig:potencia_vs_r}, donde se representa la curva de potencia disipada en función de la resistencia de carga.
 
@@ -483,30 +483,30 @@ A partir de los datos exportados de la simulación, se generó el gráfico de la
             ymin=0, ymax=0.12,
             xmin=0, xmax=10
         ]
-        
+
         % Datos extraídos de LTSpice (muestreados cada 0.2 ohms para fluidez visual)
         \addplot[blue, thick] coordinates {
-            (0.2, 0.01664) (0.4, 0.03086) (0.6, 0.04304) (0.8, 0.05350) 
-            (1.0, 0.06250) (1.2, 0.07023) (1.4, 0.07690) (1.6, 0.08264) 
-            (1.8, 0.08758) (2.0, 0.09183) (2.2, 0.09548) (2.4, 0.09861) 
-            (2.6, 0.10128) (2.8, 0.10355) (3.0, 0.10546) (3.2, 0.10707) 
-            (3.4, 0.10841) (3.6, 0.10951) (3.8, 0.11040) (4.0, 0.11111) 
-            (4.2, 0.11164) (4.4, 0.11204) (4.6, 0.11230) (4.8, 0.11245) 
-            (5.0, 0.11250) (5.2, 0.11245) (5.4, 0.11233) (5.6, 0.11213) 
-            (5.8, 0.11188) (6.0, 0.11157) (6.2, 0.11120) (6.4, 0.11080) 
-            (6.6, 0.11035) (6.8, 0.10988) (7.0, 0.10937) (7.2, 0.10884) 
-            (7.4, 0.10828) (7.6, 0.10770) (7.8, 0.10711) (8.0, 0.10650) 
-            (8.2, 0.10588) (8.4, 0.10525) (8.6, 0.10461) (8.8, 0.10396) 
-            (9.0, 0.10331) (9.2, 0.10265) (9.4, 0.10199) (9.6, 0.10133) 
+            (0.2, 0.01664) (0.4, 0.03086) (0.6, 0.04304) (0.8, 0.05350)
+            (1.0, 0.06250) (1.2, 0.07023) (1.4, 0.07690) (1.6, 0.08264)
+            (1.8, 0.08758) (2.0, 0.09183) (2.2, 0.09548) (2.4, 0.09861)
+            (2.6, 0.10128) (2.8, 0.10355) (3.0, 0.10546) (3.2, 0.10707)
+            (3.4, 0.10841) (3.6, 0.10951) (3.8, 0.11040) (4.0, 0.11111)
+            (4.2, 0.11164) (4.4, 0.11204) (4.6, 0.11230) (4.8, 0.11245)
+            (5.0, 0.11250) (5.2, 0.11245) (5.4, 0.11233) (5.6, 0.11213)
+            (5.8, 0.11188) (6.0, 0.11157) (6.2, 0.11120) (6.4, 0.11080)
+            (6.6, 0.11035) (6.8, 0.10988) (7.0, 0.10937) (7.2, 0.10884)
+            (7.4, 0.10828) (7.6, 0.10770) (7.8, 0.10711) (8.0, 0.10650)
+            (8.2, 0.10588) (8.4, 0.10525) (8.6, 0.10461) (8.8, 0.10396)
+            (9.0, 0.10331) (9.2, 0.10265) (9.4, 0.10199) (9.6, 0.10133)
             (9.8, 0.10066) (10.0, 0.10000)
         };
-        
+
         % Marcador del punto de máxima transferencia de potencia
         \draw[dashed, red, thick] (axis cs:5,0) -- (axis cs:5,0.1125);
         \draw[dashed, red, thick] (axis cs:0,0.1125) -- (axis cs:5,0.1125);
         \filldraw[red] (axis cs:5,0.1125) circle (2pt);
         \node[anchor=south west, text=red, font=\small, fill=white, inner sep=2pt] at (axis cs:5.1,0.09) {Máximo: $P = 0.1125\text{W}$ en $R_L = 5\ \Omega$};
-        
+
         \end{axis}
     \end{tikzpicture}
     \caption{Curva de potencia disipada en función de la resistencia de carga, a partir de datos obtenidos de LTSpice.}
@@ -518,7 +518,7 @@ Al analizar la curva, se evidencia un comportamiento en forma de campana que alc
 % ==================== 6. ANÁLISIS DE RESULTADOS ====================
 \section{Análisis de los resultados obtenidos}
 
-[COMPLETAR: Discutir las diferencias entre los valores. 
+[COMPLETAR: Discutir las diferencias entre los valores.
 \begin{itemize}
     \item Para la Tabla 1, explicar por qué la $R$ calculada de \SI{10}{M\ohm} da tan distinto (efecto de la resistencia interna de los instrumentos, esquemas de conexión corta y larga).
     \item Para la parte de Kirchhoff, comparar las corrientes medidas con las teóricas esperadas y mencionar posibles fuentes de error (tolerancia de resistores, cables).
