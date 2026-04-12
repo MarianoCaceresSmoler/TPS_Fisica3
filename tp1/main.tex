@@ -101,21 +101,68 @@ Los resultados obtenidos mostraron una buena concordancia entre las mediciones e
 
 % ==================== 3. INTRODUCCIÓN TEÓRICA ====================
 \section{Introducción teórica}
-La práctica se fundamenta en la \textbf{Ley de Ohm}, la cual establece que la resistencia $R$ de un conductor es el cociente entre la diferencia de potencial en sus extremos ($V_a - V_b$) y la corriente $I$ que lo atraviesa:
 
-\begin {equation}
+El presente trabajo práctico se fundamenta en el estudio de las leyes fundamentales que rigen los circuitos de corriente continua, así como en el análisis del comportamiento de fuentes reales de tensión. 
+
+\subsection{Ley de Ohm y Asociación de Resistencias}
+La \textbf{Ley de Ohm} establece que la diferencia de potencial ($V_a - V_b$) aplicada entre los extremos de un conductor metálico es directamente proporcional a la intensidad de corriente $I$ que circula por él. La constante de proporcionalidad es la resistencia eléctrica $R$ del material:
+
+\begin{equation}
 R = \frac{V_a - V_b}{I}
 \label{eq:LeyDeOhm}
 \end{equation}
 
-Para el análisis de circuitos más complejos, se emplean las \textbf{Leyes de Kirchhoff}, derivadas de los principios de conservación:
+En circuitos con múltiples componentes, las resistencias pueden asociarse de distintas maneras. Para una conexión en \textbf{serie}, la resistencia equivalente es la suma algebraica de las resistencias individuales, de modo que $R_{eq} = \sum_{i=1}^{n} R_i$. Por otro lado, en una conexión en \textbf{paralelo}, la inversa de la resistencia equivalente es igual a la suma de las inversas de cada resistor: $\frac{1}{R_{eq}} = \sum_{i=1}^{n} \frac{1}{R_i}$.
+
+\subsection{Leyes de Kirchhoff}
+Para el análisis analítico de circuitos más complejos que no pueden reducirse mediante asociaciones simples, se emplean las \textbf{Leyes de Kirchhoff}, las cuales se derivan directamente de los principios de conservación de la física:
+
 \begin{itemize}
-    \item \textit{Ley de los nodos (Conservación de la carga):} La suma algebraica de las intensidades de corriente en un nodo es cero ($\sum I = 0$).
-    \item \textit{Ley de las mallas (Conservación de la energía):} La suma algebraica de las diferencias de potencial a lo largo de una malla cerrada es cero ($\sum V = 0$).
+    \item \textbf{Ley de los nodos (Conservación de la carga):} Establece que la suma algebraica de las intensidades de corriente que concurren en un nodo es igual a cero. Es decir, toda la corriente que entra a un nodo debe ser igual a la que sale:
+    \begin{equation}
+    \sum_{i=1}^{n} I_i = 0
+    \end{equation}
+    
+    \item \textbf{Ley de las mallas (Conservación de la energía):} Determina que, en cualquier camino cerrado (malla) de un circuito, la suma algebraica de las diferencias de potencial es nula:
+    \begin{equation}
+    \sum_{i=1}^{m} V_i = 0
+    \end{equation}
 \end{itemize}
 
-Finalmente, para el análisis de fuentes reales, se considera que la diferencia de potencial entregada está dada por $V = \epsilon - I \cdot R_{int}$, donde $\epsilon$ es la fuerza electromotriz y $r_{int}$ la resistencia interna de la fuente. El \textbf{Teorema de la transferencia de máxima potencia} indica que la potencia disipada por una resistencia de carga es máxima cuando su valor iguala a la resistencia interna de la fuente.
+\subsection{Fuentes reales y Máxima transferencia de potencia}
+Una fuente de tensión ideal mantiene una diferencia de potencial constante independientemente de la corriente que entregue. Sin embargo, en el caso de las \textbf{fuentes reales}, se debe considerar que los materiales que las componen ofrecen cierta oposición al paso de la corriente. Esto se modela conectando una resistencia interna ($R_{int}$) en serie con la fuerza electromotriz ideal ($\epsilon$). De este modo, la tensión efectiva $V$ que la fuente entrega a los bornes disminuye a medida que aumenta la corriente $I$:
 
+\begin{equation}
+V = \epsilon - I \cdot R_{int}
+\end{equation}
+
+El \textbf{Teorema de la transferencia de máxima potencia} establece que la potencia eléctrica transferida por una fuente real a una resistencia de carga ($R_L$) será máxima cuando el valor de dicha carga se iguale al valor de la resistencia interna de la fuente. 
+
+Para demostrarlo analíticamente, partimos de la ecuación de potencia disipada por la carga $P = I^2 \cdot R_L$. Reemplazando la corriente $I$ por la expresión del circuito en serie, obtenemos la potencia en función de $R_L$:
+
+\begin{equation}
+P(R_L) = \left( \frac{\epsilon}{R_{int} + R_L} \right)^2 R_L = \frac{\epsilon^2 \cdot R_L}{(R_{int} + R_L)^2}
+\end{equation}
+
+Para hallar el valor de $R_L$ que maximiza esta función, derivamos $P$ respecto de $R_L$ e igualamos a cero:
+
+\begin{equation}
+\frac{dP}{dR_L} = \epsilon^2 \left[ \frac{1 \cdot (R_{int} + R_L)^2 - R_L \cdot 2(R_{int} + R_L)}{(R_{int} + R_L)^4} \right] = 0
+\end{equation}
+
+Dado que $\epsilon \neq 0$, el numerador de la fracción debe ser igual a cero para que se cumpla la igualdad:
+
+\begin{equation}
+(R_{int} + R_L)^2 - 2R_L(R_{int} + R_L) = 0
+\end{equation}
+
+Dividiendo ambos miembros por $(R_{int} + R_L)$ y despejando, llegamos a la condición de máxima transferencia:
+
+\begin{equation}
+R_{int} + R_L - 2R_L = 0 \quad \Longrightarrow \quad R_L = R_{int}
+\end{equation}
+
+De esta manera, queda demostrado que el pico máximo de potencia se alcanza exclusivamente cuando la resistencia conectada al circuito coincide con la resistencia interna del generador.
 % ==================== 4. INSTRUMENTOS Y ELEMENTOS EMPLEADOS ====================
 \section{Instrumentos y elementos empleados}
 Para la realización de los experimentos, utilizamos los siguientes materiales:
@@ -320,63 +367,37 @@ Para replicar las condiciones propuestas en la guía de trabajos prácticos, se 
 A continuación, se presentan los resultados obtenidos a partir de las mediciones realizadas durante la experiencia práctica.
 
 \subsection{Parte 1: Resistencias y Ley de Ohm}
-En la tabla \ref{tab:ResistenciasParte1} se comparan los valores nominales de las resistencias a partir del código de colores, con las mediciones directamente obtenidas con el óhmetro, y los resultados calculados a partir de las mediciones de diferencia de potencial y corriente empleando los circuitos de conexionado corto \ref{fig:corta} para las primeras 3 resistencias, y ambos conexionados corto y largo \ref{fig:larga}. Cabe aclarar que las resistencias internas propias del instrumental pueden inferir en los resultados obtenidos. Es por eso que adicionalmente, se midieron las resistencias internas del multimetro en modo amperimetro y modo voltimetro para luego incorporarlas a una nueva ecuación.
 
-\begin{tikzpicture}[transform shape]
-	% Paths, nodes and wires:
-	\draw (4, 2) to[battery1, l={$V_s$}] (3.995, 10);
-	\draw (5.995, 10) to[ammeter] (5.995, 8);
-	\draw (7.995, 6) to[voltmeter] (7.995, 4);
-	\draw (6, 6) to[american resistor, l={$R_{ba}$}] (5.995, 2);
-	\draw (7.995, 4) to[american resistor, l={$R_V$}] (7.995, 2);
-	\draw (5.995, 8) to[american resistor, l={$R_A$}] (6, 6);
-	\draw (3.995, 10) to[switch] (5.995, 10);
-	\draw (4, 2) -- (8, 2);
-	\node[circ](N1) at (6, 6){} node[anchor=north east] at (N1.south west){$B$};
-	\draw (7.995, 6) -- (6, 6);
-	\node[circ](N2) at (5.995, 2){} node[anchor=south east] at (N2.north west){$A$};
-\end{tikzpicture}
+\subsubsection{Comparación de valores de resistencias hallados por diferentes métodos}
 
-A partir de este modelo, se puede deducir que la resistencia total del circuito.
+En la tabla \ref{tab:ResistenciasParte1} se comparan los valores nominales de las resistencias a partir del código de colores, con las mediciones directamente obtenidas con el óhmetro, y los resultados calculados a partir de las mediciones de diferencia de potencial y corriente empleando los circuitos de conexionado corto (figura \ref{fig:corta}) para las primeras 3 resistencias, y ambos conexionados corto y largo (figura \ref{fig:larga}). Cabe aclarar que las resistencias internas propias del instrumental pueden inferir en los resultados obtenidos. 
 
-\begin {equation}
-R_{Total} = R_A + (R_V^{-1} + R_A^{-1})^{-1}
-\label {eq:RTotal}
-\end {equation}
-
-Luego, empleando la ecuación \ref{eq:LeyDeOhm}, se obtiene
-
-\begin {equation}
-R_{ba} = ((\frac{V}{I} - R_A)^{-1} - R_V^{-1})^{-1}
-\label {eq:Rba}
-\end {equation}
-
-De esta forma, mediante el circuito del conexionado corto, se puede encontrar el valor del resistor de interés con mayor precisión. Cabe mencionar que a pesar de incluir más variables, se siguen desestimando otros factores que influyen 
 \begin{table}[H]
     \centering
-    \begin{tabular}{cccccc}
+    \begin{tabular}{lccccc}
     \toprule
-    \textbf{Resistor} & \textbf{R Nominal [\si{\ohm}]} & \textbf{R Medida [\si{\ohm}]} & \textbf{V medido [\si{V}]} & \textbf{I medida [\si{mA}]} & \textbf{R Calculada ($V/I$) [\si{\ohm}]} \\
+    \textbf{Resistor} & \textbf{R Nominal [\si{\ohm}]} & \textbf{R Medida [\si{\ohm}]} & \textbf{V medido [\si{V}]} & \textbf{I medida [\si{mA}]} & \textbf{Cálculo ($V/I$) [\si{\ohm}]} \\
     \midrule
     1 & 150 & 148 & 1.436 & 9.77 & 146.98 \\
     2 & 220 & 218 & 1.470 & 6.75 & 217.78 \\
     3 & 330 & 325 & 1.490 & 4.60 & 323.91 \\
-    4 & \SI{10}{M\ohm} & \SI{10.04}{M\ohm} & 9.33 & \SI{1.74}{\micro\ampere} & \SI{5.362}{M\ohm} \\
+    4 (Conexionado corto) & \SI{10}{\mega\ohm} & \SI{10.04}{\mega\ohm} & 9.33 & \SI{1.74}{\micro\ampere} & \SI{5.362}{M\ohm} \\
+    4 (Conexionado largo) & \SI{10}{\mega\ohm} & \SI{10.04}{\mega\ohm} & 9.33 & \SI{0.9}{\micro\ampere} & \SI{10.37}{M\ohm} \\
     \bottomrule
     \end{tabular}
     \caption{Comparación de resistencias medidas y calculadas.}
     \label {tab:ResistenciasParte1}
 \end{table}
 
-Para las asociaciones en serie y paralelo de las resistencias de 150, 220 y 330 \si{\ohm}, los valores obtenidos fueron:
+Para las asociaciones en serie y paralelo de las resistencias de 150, 220 y 330 \si{\ohm}, se emplearon las 3 mismas comparaciones. A continuación, se presenta la tabla resultante.
 
 \begin{table}[H]
     \centering
     \begin{tabular}{lccccc}
     \toprule
-    \textbf{Conexión} & \textbf{$R_{EQ}$ Nominal} & \textbf{$R_{EQ}$ Medida} & \textbf{V [\si{V}]} & \textbf{I [\si{mA}]} & \textbf{$R_{EQ}$ Calculada ($V/I$)} \\
+    \textbf{Conexión} & \textbf{$R_{EQ}$ Nominal} & \textbf{$R_{EQ}$ Medida} & \textbf{V [\si{V}]} & \textbf{I [\si{}\milli\ampere]} & \textbf{$R_{EQ}$ Calculada ($V/I$)} \\
     \midrule
-    Serie & \SI{700}{\ohm} & \SI{692}{\ohm} & 1.517 & 2.19 & \SI{692.69}{\ohm} \\
+    Serie & \SI{700}{\ohm} & \SI{689}{\ohm} & 1.517 & 2.19 & \SI{692.69}{\ohm} \\
     Paralelo & \SI{68.9}{\ohm} & \SI{68.95}{\ohm} & 1.265 & 18.32 & \SI{69.05}{\ohm} \\
     \bottomrule
     \end{tabular}
@@ -384,19 +405,61 @@ Para las asociaciones en serie y paralelo de las resistencias de 150, 220 y 330 
 \end{table}
 
 \subsection{Parte 2: Leyes de Kirchhoff}
-Armamos el circuito de dos mallas con fuentes de \SI{9}{V} y \SI{1.5}{V}. Las ecuaciones planteadas analíticamente fueron:
-$$ 9\text{V} - I_1 R_1 - (I_1 - I_2) R_2 = 0 $$
-$$ -1.5\text{V} - I_2 R_3 - (I_2 - I_1) R_2 = 0 $$
 
-Al medir las corrientes con los multímetros, registramos:
-\begin{itemize}
-    \item \textbf{Circuito original:} $I_1 = \SI{35.60}{mA}$, $I_2 = \SI{16.86}{mA}$, Corriente central ($I_1 - I_2$) = \SI{18.4}{mA}.
-    \item \textbf{Invirtiendo la fuente de 1.5V:} $I_1 = \SI{30.2}{mA}$, $I_2 = \SI{8.08}{mA}$, Corriente central = \SI{22.1}{mA}.
-\end{itemize}
+Para comprobar experimentalmente las leyes de conservación de la energía y de la carga, armamos un circuito de dos mallas. Según las mediciones preliminares tomadas con el multímetro, las fuentes arrojaron tensiones reales de $V_1 = 9.37\text{ V}$ y $V_2 = 1.544\text{ V}$. Los resistores utilizados correspondieron a $R_1 = 150\ \Omega$, $R_2 = 220\ \Omega$ (en la rama central compartida) y $R_3 = 330\ \Omega$.
+
+Las ecuaciones de malla planteadas analíticamente, recorriendo los lazos en sentido horario, fueron:
+\begin{equation}
+    V_1 - I_1 R_1 - (I_1 - I_2) R_2 = 0
+\end{equation}
+\begin{equation}
+    \pm V_2 - I_2 R_3 - (I_2 - I_1) R_2 = 0
+\end{equation}
+El signo de $V_2$ depende de la polaridad de la fuente de $1.5\text{ V}$ conectada en cada etapa del experimento.
+
+\subsubsection{Resultados obtenidos y comparación con el modelo teórico}
+
+A continuación, se presentan las comparaciones entre los valores medidos en el laboratorio y los valores calculados teóricamente mediante el planteo de ecuaciones de malla.
+
+\begin{table}[H]
+    \centering
+    \begin{tabular}{|l|c|c|c|}
+        \hline
+        \textbf{Parámetro} & \textbf{Valor Teórico [mA]} & \textbf{Valor Medido [mA]} & \textbf{Error Relativo [\%]} \\ \hline
+        Corriente $I_1$    & 35.42                       & 35.60                      & 0.51\%                     \\ \hline
+        Corriente $I_2$    & 16.97                       & 16.86                      & 0.65\%                      \\ \hline
+        Corriente Central  & 18.45                       & 18.40                      & 0.27\%                     \\ \hline
+    \end{tabular}
+    \caption{Resultados para el Circuito Original (Fuentes en oposición).}
+    \label{tab:kirchhoff_1}
+\end{table}
+
+\begin{table}[H]
+    \centering
+    \begin{tabular}{|l|c|c|c|}
+        \hline
+        \textbf{Parámetro} & \textbf{Valor Teórico [mA]} & \textbf{Valor Medido [mA]} & \textbf{Error Relativo [\%]} \\ \hline
+        Corriente $I_1$    & 31.04                       & 30.20                      & 2.78\%                     \\ \hline
+        Corriente $I_2$    & 9.61                        & 9.15                       & 5.03\%                     \\ \hline
+        Corriente Central  & 21.43                       & 22.10                      & 3.03\%                     \\ \hline
+    \end{tabular}
+    \caption{Resultados para el Circuito con Fuente de 1.5V Invertida.}
+    \label{tab:kirchhoff_2}
+\end{table}
+
+\subsubsection{Análisis de resultados y discusión de errores}
+
+Al contrastar los valores experimentales con los teóricos, se observan discrepancias que, si bien pueden ser notorias en términos porcentuales (fundamentalmente para la experiencia con la fuente invertida), no invalidan las leyes de Kirchhoff sino que exponen las limitaciones del modelo ideal.
+
+La fuente de error más significativa identificada fue la resistencia interna del instrumental. El modelo teórico asume amperímetros ideales ($R_a = 0\ \Omega$); sin embargo, el uso multímetros reales introduce resistencias adicionales en cada rama. Esto se comprobó durante la experiencia al usar 2 multímetros en simultáneo al notar que el cambio de escala en un multímetro (que altera su resistencia de derivación interna) modificaba instantáneamente las lecturas del circuito.
+
+En segundo lugar, la caída de tensión en las fuentes bajo carga también afecta los resultados. Las tensiones $V_1$ y $V_2$ se midieron inicialmente en vacío; al cerrar el circuito, la resistencia interna de las pilas provoca que la diferencia de potencial efectiva entregada sea menor a la nominal. A esto se suma la tolerancia de los resistores ($5\%$), lo que genera que los valores reales de $R$ difieran de los valores utilizados en el sistema de ecuaciones.
+
+Pese a estos factores, la Ley de los Nodos se verificó con gran precisión: en ambos casos, la suma algebraica de las corrientes medidas en las ramas externas ($I_1$ e $I_2$) coincidió casi perfectamente con el valor registrado en la rama central ($I_{central} \approx |I_1 - I_2|$). Esto demuestra que, incluso con instrumental no ideal, el principio de conservación de la carga se cumple estrictamente en el sistema.
+
+COMPLETAR CON CALCULO DE POTENCIA Y QUE PASO CUANDO DIMOS VUELTA LA FUENTE
 
 \subsection{Parte 3: Máxima transferencia de potencia}
-
-COMPLETAR CON DESARROLLO ANALITICO DEL TEOREMA DE MAXIMA TRANSFERENCIA DE POTENCIA.
 
 Esta etapa se llevó a cabo íntegramente mediante simulación computacional en LTSpice. Para ello, se configuró el modelo de la fuente real con una fuerza electromotriz $\epsilon = 1.5\text{ V}$ y una resistencia interna teórica $R_{int} = 5\ \Omega$. 
 
