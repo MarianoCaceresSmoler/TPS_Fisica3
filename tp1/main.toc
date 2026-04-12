@@ -1,0 +1,15 @@
+\babel@toc {spanish}{}\relax 
+\contentsline {section}{\numberline {1}Objetivos y Resumen}{2}{}%
+\contentsline {section}{\numberline {2}Introducción teórica}{2}{}%
+\contentsline {subsection}{\numberline {2.1}Ley de Ohm y Asociación de Resistencias}{2}{}%
+\contentsline {subsection}{\numberline {2.2}Leyes de Kirchhoff}{3}{}%
+\contentsline {subsection}{\numberline {2.3}Fuentes reales y Máxima transferencia de potencia}{3}{}%
+\contentsline {section}{\numberline {3}Instrumentos y elementos empleados}{4}{}%
+\contentsline {section}{\numberline {4}Datos obtenidos: discusión y cálculo de errores}{8}{}%
+\contentsline {subsection}{\numberline {4.1}Parte 1: Resistencias y Ley de Ohm}{8}{}%
+\contentsline {subsubsection}{\numberline {4.1.1}Comparación de valores de resistencias hallados por diferentes métodos}{8}{}%
+\contentsline {subsection}{\numberline {4.2}Parte 2: Leyes de Kirchhoff}{9}{}%
+\contentsline {subsubsection}{\numberline {4.2.1}Resultados obtenidos y comparación con el modelo teórico}{9}{}%
+\contentsline {subsubsection}{\numberline {4.2.2}Análisis de resultados y discusión de errores}{10}{}%
+\contentsline {subsection}{\numberline {4.3}Parte 3: Máxima transferencia de potencia}{11}{}%
+\contentsline {section}{\numberline {5}Análisis de los resultados obtenidos}{12}{}%
