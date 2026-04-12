@@ -1,6 +1,7 @@
-tp1/main.aux
-tp1/main.fdb_latexmk
-tp1/main.fls
-tp1/main.log
-tp1/main.pdf
-tp1/main.synctex.gz
+# LaTeX intermediate files
+main.aux
+main.fdb_latexmk
+main.fls
+main.log
+main.pdf
+main.synctex.gz
