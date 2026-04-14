@@ -194,7 +194,7 @@ Realizamos las mediciones utilizando dos configuraciones distintas para analizar
         % Paths, nodes and wires:
         \draw (6, 6) to[battery1, l={$V$}] (6, 8);
         \draw (11, 7) to[american resistor] (11, 5);
-        \draw (11, 9) to[ammeter, l={$I_R$}] (11, 7);
+        \draw (11, 7) to[ammeter, l={$I_R$}] (11, 9);
         \draw (13, 7) to[voltmeter, l={$V_R$}] (13, 5);
         \draw (13, 5) |- (6, 5) -| (6, 6);
         \draw (11, 7) -- (13, 7);
@@ -214,7 +214,7 @@ Realizamos las mediciones utilizando dos configuraciones distintas para analizar
         % Paths, nodes and wires:
         \draw (6, 6) to[battery1, l={$V$}] (6, 8);
         \draw (11, 7) to[american resistor] (11, 5);
-        \draw (11, 9) to[ammeter, l={$I_R$}] (11, 7);
+        \draw (11, 7) to[ammeter, l={$I_R$}] (11, 9);
         \draw (13, 9) to[voltmeter, l={$V_R$}] (13, 5);
         \draw (13, 5) |- (6, 5) -| (6, 6);
         \draw (11, 9) -- (13, 9);
@@ -240,7 +240,7 @@ Posteriormente, comprobamos la validez de las ecuaciones teóricas para la asoci
         \draw (6, 6) to[battery1, l={$V$}] (6, 8);
 
         % Amperímetro
-        \draw (11, 9) to[ammeter, l={$I_T$}] (11, 7);
+        \draw (11, 7) to[ammeter, l={$I_T$}] (11, 9);
 
         % Resistencias en serie
         \draw (11, 7) to[american resistor, l={$R_1$}] (11, 5);
@@ -277,7 +277,7 @@ Posteriormente, comprobamos la validez de las ecuaciones teóricas para la asoci
         \draw (6, 8) -| (6, 9) -- (7, 9) -- (7.005, 9);
         \draw (7.005, 9) to[switch] (8.005, 9);
         \draw (8.005, 9) -- (11, 9);
-        \draw (11, 9) to[ammeter, l={$I_T$}] (11, 7);
+        \draw (11, 7) to[ammeter, l={$I_T$}] (11, 9);
 
         % Nodos principales superior e inferior de la configuración en paralelo
         \draw (9, 7) -- (15, 7); % Riel superior
@@ -321,8 +321,17 @@ Posteriormente, repetimos el procedimiento de medición invirtiendo la polaridad
         \draw (11, 6) -- (11, 4);
         \draw (11, 3) |- (1, 1) -| (1, 3);
         \draw (1, 4) -| (1, 6);
+
+        % --- Corrientes de malla (Horarias) ---
+        
+        % Malla 1 (Izquierda)
+        \draw[thin, <-, >=stealth] (3.5, 3.5) node {$I_{1}$} ++(-60:0.5) arc (-60:170:0.5);
+        
+        % Malla 2 (Derecha)
+        \draw[thin, <-, >=stealth] (8.5, 3.5) node {$I_{2}$} ++(-60:0.5) arc (-60:170:0.5);
+
     \end{tikzpicture}
-    \caption{Esquema del circuito de dos mallas empleado para verificar las Leyes de Kirchhoff.}
+    \caption{Esquema del circuito de dos mallas empleado para verificar las Leyes de Kirchhoff con corrientes de malla indicadas.}
     \label{fig:kirchhoff1}
 \end{figure}
 
@@ -344,6 +353,13 @@ Posteriormente, repetimos el procedimiento de medición invirtiendo la polaridad
         \draw (11, 6) -- (11, 4);
         \draw (11, 3) |- (1, 1) -| (1, 3);
         \draw (1, 4) -| (1, 6);
+
+         % Malla 1 (Izquierda)
+        \draw[thin, <-, >=stealth] (3.5, 3.5) node {$I_{1}$} ++(-60:0.5) arc (-60:170:0.5);
+        
+        % Malla 2 (Derecha)
+        \draw[thin, <-, >=stealth] (8.5, 3.5) node {$I_{2}$} ++(-60:0.5) arc (-60:170:0.5);
+        
     \end{tikzpicture}
     \caption{Circuito de dos mallas con la polaridad de la fuente $V_{S2}$ invertida.}
     \label{fig:kirchhoff2}
@@ -465,15 +481,15 @@ A continuación se detallan las comparaciones entre los valores medidos en el la
         \midrule
         \multicolumn{4}{c}{\textbf{Circuito Original (Fuentes en oposición)}} \\
         \midrule
-        Resistor $R_1$ & 5.340 & 5.330 & 0.19\% \\ 
-        Resistor $R_2$ & 4.048 & 4.030 & 0.44\% \\ 
-        Resistor $R_3$ & 5.564 & 5.550 & 0.25\% \\ 
+        Resistor $R_1$ & 5.340 & 5.270 & 1.31\% \\ 
+        Resistor $R_2$ & 4.048 & 4.010 & 0.94\% \\ 
+        Resistor $R_3$ & 5.564 & 5.480 & 1.53\% \\ 
         \midrule
         \multicolumn{4}{c}{\textbf{Circuito con Fuente de 1.5V Invertida}} \\
         \midrule
-        Resistor $R_1$ & 4.530 & 4.510 & 0.44\% \\ 
-        Resistor $R_2$ & 4.862 & 4.850 & 0.25\% \\ 
-        Resistor $R_3$ & 3.020 & 3.010 & 0.33\% \\ 
+        Resistor $R_1$ & 4.530 & 4.470 & 1.32\% \\ 
+        Resistor $R_2$ & 4.862 & 4.820 & 0.86\% \\ 
+        Resistor $R_3$ & 3.020 & 2.970 & 1.65\% \\ 
         \bottomrule
     \end{tabular}
     \caption{Comparación de caídas de potencial sobre las resistencias.}
@@ -482,7 +498,7 @@ A continuación se detallan las comparaciones entre los valores medidos en el la
 
 \subsection{Parte 3: Máxima transferencia de potencia}
 
-Los datos recabados en la simulación computacional (LTSpice) mediante el barrido paramétrico de la resistencia de carga $R_L$ se volcaron en el siguiente gráfico para evidenciar la curva de potencia.
+Los datos obtenidos en la simulación computacional (LTSpice) mediante el barrido paramétrico de la resistencia de carga $R_L$ se volcaron en el siguiente gráfico para evidenciar la curva de potencia.
 
 \begin{figure}[H]
     \centering
@@ -538,12 +554,12 @@ En la primera parte de la experiencia (Tabla \ref{tab:ResistenciasParte1}), los 
 Los multímetros utilizados como voltímetros poseen una resistencia interna propia finita (típicamente del orden de \SI{10}{M\ohm}). Al usar la \textbf{conexión corta}, el voltímetro queda en paralelo directo con $R_4$. Al poseer impedancias del mismo orden de magnitud, una parte significativa de la corriente se desvía por el instrumento. En consecuencia, el cálculo $V/I$ arrojó \SI{5.362}{M\ohm}, lo que corresponde a la resistencia equivalente del paralelo entre el resistor y el propio voltímetro. Por el contrario, en la \textbf{conexión larga}, el voltímetro mide la caída de tensión total (resistor + amperímetro), pero el amperímetro registra la corriente exacta que atraviesa a $R_4$ sin desvíos. Esto explica por qué en este caso el cálculo (\SI{10.37}{M\ohm}) resultó mucho más fiel al valor nominal, siendo el método adecuado para medir resistencias muy altas.
 
 \subsection{Verificación de las Leyes de Kirchhoff y discusión de errores}
-Al analizar los circuitos de mallas, se evidencia que el comportamiento empírico se ajusta sólidamente al modelo teórico. En la configuración original, las corrientes medidas presentaron errores relativos menores al 1\%, mientras que al invertir la fuente el error máximo escaló levemente al 5.03\%. Asimismo, las caídas de potencial (Tabla \ref{tab:caidas_potencial}) demostraron gran precisión empírica, con desviaciones no mayores al 0.44\%.
+Al analizar los circuitos de mallas, se evidencia que el comportamiento empírico se ajusta sólidamente al modelo teórico. En la configuración original, las corrientes medidas presentaron errores relativos menores al 1\%, mientras que al invertir la fuente el error máximo escaló levemente al 5.03\%. Asimismo, las caídas de potencial (Tabla \ref{tab:caidas_potencial}) demostraron gran precisión empírica, con desviaciones no mayores al 1.65\%. Se infiere que este incremento en el error al invertir la polaridad surge de las limitaciones de la fuente de tensión real; al no ser una fuente ideal, no está diseñada para absorber corriente y disipar potencia de manera lineal. Este comportamiento anómalo frente a una corriente entrante altera su resistencia interna y el voltaje de salida nominal, introduciendo las discrepancias observadas respecto al modelo teórico.
 
 Las discrepancias halladas exponen las limitaciones de los modelos ideales y se atribuyen a tres fuentes de error sistemáticas:
 \begin{enumerate}
     \item \textbf{Resistencia interna de los amperímetros:} El modelo matemático asume amperímetros ideales ($R_a = 0\ \Omega$). En la práctica, cada instrumento introduce un resistor en serie a la rama. Durante la práctica se corroboró esto usando 2 multímetros simultáneamente, y viendo que un simple cambio de escala en un multímetro alteraba dicha resistencia interna, modificando instantáneamente todas las corrientes del circuito.
-    \item \textbf{Caída de tensión en vacío vs. bajo carga:} Las fuentes se midieron antes de acoplarlas al circuito. Al conectarlas, la propia resistencia interna de las pilas generó una caída de tensión, entregando un voltaje efectivo a la malla ligeramente inferior al utilizado en las ecuaciones.
+    \item \textbf{Caída de tensión en vacío vs. bajo carga:} Las fuentes se midieron antes de acoplarlas al circuito. Al conectarlas, la propia resistencia interna de las fuentes generó una caída de tensión, entregando un voltaje efectivo a la malla ligeramente inferior al utilizado en las ecuaciones.
     \item \textbf{Resistencia de contactos y cables:} Las mínimas diferencias de tensión observadas entre el cálculo analítico y la medición (del orden de 10 a 20 milivoltios) se justifican físicamente por la pérdida de energía debida a la resistencia no nula de los cables de conexión y terminales del tablero.
 \end{enumerate}
 
