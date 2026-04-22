@@ -1,0 +1,24 @@
+\section{Análisis de los resultados obtenidos}
+
+El relevamiento de las curvas características permitió corroborar experimentalmente los modelos teóricos propuestos para los diferentes tipos de componentes.
+
+\subsection{Componente Lineal (Resistor)}
+A partir del Gráfico \ref{fig:curva_resistor}, se observa que los datos empíricos del resistor de carbón se ajustan perfectamente a una línea recta que pasa por el origen. Esto confirma su carácter de dispositivo óhmico. El mínimo margen de error (aproximadamente $0.5\%$) entre el valor estático leído por el multímetro y el valor dinámico obtenido de la pendiente demuestra que la resistencia se mantuvo constante frente a las variaciones de tensión y corriente, sin manifestar efectos de calentamiento que alteren su comportamiento.
+
+\subsection{Componente No Lineal Térmico (Lámpara)}
+El comportamiento de la lámpara de filamento (Gráfico \ref{fig:curva_lampara}) difiere radicalmente del resistor. Si bien la curva parte del origen, su pendiente disminuye a medida que aumenta la tensión. Al calcular la resistencia aparente punto a punto (Grafico \ref{fig:curva_resistencia_lampara}), se evidencia un marcado aumento: a tensiones muy bajas ($0.02$ V) la resistencia es de aproximadamente $\SI{14}{\ohm}$, mientras que a $12.14$ V asciende a más de $\SI{87}{\ohm}$. 
+
+Este fenómeno es la comprobación práctica del efecto Joule y del coeficiente de temperatura positivo (PTC) del tungsteno. Al aumentar la tensión, aumenta la corriente, lo que eleva significativamente la temperatura del filamento (haciéndolo brillar) y, en consecuencia, aumenta su resistividad, ofreciendo mayor oposición al paso de corriente.
+
+\subsection{Componentes de Estado Sólido (Diodos)}
+Las curvas del diodo de silicio y del LED (Gráfico \ref{fig:curva_diodos}) corroboran la fuerte no linealidad y asimetría de los componentes semiconductores.
+
+En ambos casos, la corriente es prácticamente nula hasta alcanzar una tensión de umbral específica para cada material, a partir de la cual la curva adopta un perfil casi exponencial. Al graficar la curva característica semilogarítmica de tensión-corriente (Figuras \ref{fig:log_diodo_si} y \ref{fig:log_led_rojo}), se observa claramente una tendencia lineal (una recta) para ambos componentes en su respectiva zona de polarización directa. Esto corrobora empíricamente que el modelo matemático exponencial describe de forma precisa la física de ambos dispositivos. 
+
+Asimismo, la separación horizontal entre ambas rectas evidencia la gran diferencia en la barrera de potencial (tensión de umbral) que existe entre el silicio estándar y el material compuesto (ej. arseniuro de galio) utilizado para el LED rojo:
+\begin{itemize}
+    \item Para el \textbf{Diodo de Silicio}, se observa que comienza a conducir de manera notoria superando la barrera de los $0.6$ V - $0.7$ V, de acuerdo con la teoría clásica de uniones P-N de silicio.
+    \item Para el \textbf{LED Rojo}, el "codo" de la curva se encuentra desplazado, comenzando la conducción alrededor de los $1.9$ V - $2.0$ V. Esto responde al salto energético mayor requerido por los semiconductores compuestos utilizados para emitir fotones en el espectro visible rojo. 
+\end{itemize}
+
+Cabe destacar que la abrupta pendiente de ambos componentes una vez superada su tensión de umbral ratifica la necesidad práctica de utilizar resistencias limitadoras (como la empleada de $\SI{560}{\ohm}$), ya que un pequeño incremento en la tensión de la fuente se traduce en un aumento drástico y potencialmente destructivo de la corriente.

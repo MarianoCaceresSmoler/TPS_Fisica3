@@ -1,0 +1,39 @@
+% --- Codificación e Idioma ---
+\usepackage[utf8]{inputenc}
+\usepackage[spanish, es-tabla]{babel} % Idioma español y uso de "Tabla" en lugar de "Cuadro"
+
+% --- Matemáticas y Física ---
+\usepackage{amsmath, amssymb, amsfonts} % Símbolos y entornos matemáticos
+\usepackage{siunitx} % Excelente para escribir unidades con formato profesional (ej. \SI{220}{\ohm})
+
+% --- Gráficos y Tablas ---
+\usepackage{circuitikz} % Para dibujar circuitos eléctricos
+\usepackage{subcaption} % Para subfiguras dentro de una figura
+\usepackage{graphicx} % Para insertar imágenes
+\usepackage{float} % Para forzar la posición de imágenes y tablas con [H]
+\usepackage{booktabs} % Para tablas con líneas profesionales (\toprule, \midrule, \bottomrule)
+\usepackage{csvsimple} % Para importar datos directamente desde archivos CSV
+\usepackage{pgfplots} % Para generar gráficos a partir de datos
+\usepackage{multicol} % Para crear columnas en tablas o texto
+\pgfplotsset{compat=1.18} % Versión de compatibilidad para pgfplots
+
+% --- Formato y Diseño ---
+\usepackage{geometry} % Configuración de márgenes
+\geometry{
+    a4paper,
+    top=2.5cm,
+    bottom=2.5cm,
+    left=2.5cm,
+    right=2.5cm
+}
+\usepackage{fancyhdr} % Para personalizar encabezados y pies de página
+\usepackage{hyperref} % Para que el índice y las referencias sean enlaces clickeables
+\hypersetup{
+    colorlinks=true,
+    linkcolor=black,
+    filecolor=magenta,
+    urlcolor=blue,
+    citecolor=black
+}
+\usepackage[bottom, hang, flushmargin]{footmisc} % Para mejorar la apariencia de las notas al pie
+

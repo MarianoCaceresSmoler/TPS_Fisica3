@@ -1,0 +1,63 @@
+\section{Introducción Teórica}
+
+\subsection{Curvas Características e Idealidad}
+La relación entre la corriente eléctrica $I$ que atraviesa un componente y la diferencia de potencial $V$ aplicada entre sus terminales se denomina \textbf{curva característica}.
+
+Dependiendo de esta relación, clasificamos los elementos en:
+\begin{itemize}
+    \item \textbf{Elementos Óhmicos (Lineales):} Son aquellos donde la corriente es directamente proporcional a la tensión ($V = I \cdot R$). Su gráfica es una recta que pasa por el origen, y su resistencia $R$ permanece constante independientemente del valor de $V$ o $I$.
+    \item \textbf{Elementos No Óhmicos (No Lineales):} Son aquellos donde la relación no es lineal. En estos casos, la resistencia puede variar según el punto de operación debido a factores como la temperatura o la estructura interna del material (como en los semiconductores).
+\end{itemize}
+
+\vspace{0.5cm}
+
+\subsection{Resistores de Carbón Depositado}
+Constituyen el ejemplo típico de componente lineal fijo. Estos dispositivos están compuestos por una varilla cerámica sobre la cual se deposita una fina capa de carbón.
+\begin{itemize}
+    \item \textbf{Composición:} Carbón pirolítico sobre soporte cerámico.
+    \item \textbf{Parámetros técnicos:} Para la práctica de laboratorio, se definen por su \textbf{resistencia nominal} (el valor óhmico esperado por el fabricante) y su \textbf{tolerancia} (el margen de error expresado en porcentaje dentro del cual se halla el valor real).
+    \item \textbf{Comportamiento:} Presentan una oposición al paso de la corriente constante dentro de sus límites nominales de potencia, siguiendo estrictamente la Ley de Ohm.
+\end{itemize}
+
+\vspace{\fill}
+
+\pagebreak
+
+\subsection{Lámpara de Filamento de Tungsteno}
+Es un dispositivo no lineal debido a fuertes efectos térmicos. Consiste en un filamento de tungsteno encerrado en una ampolla con gas inerte o vacío.
+\begin{itemize}
+    \item \textbf{Composición:} Filamento de tungsteno (punto de fusión $\approx 3422$°C).
+    \item \textbf{Comportamiento:} A medida que aumenta la tensión, la corriente calienta el filamento por efecto Joule. El tungsteno posee un coeficiente de temperatura positivo (PTC), por lo que su resistividad aumenta junto con la temperatura. La curva $I(V)$ tiende a aplanarse hacia el eje de tensión a medida que el filamento brilla. Adicionalmente, presentan factor de potencia unitario y operan indistintamente en corriente continua o alterna.
+\end{itemize}
+
+\vspace{0.5cm}
+
+\subsection{Diodos Semiconductores (Silicio y LED)}
+A diferencia de los componentes anteriores, los diodos son dispositivos de estado sólido cuya conducción depende de una unión P-N. Debido a esto, su comportamiento es marcadamente asimétrico.
+
+\begin{itemize}
+    \item \textbf{Diodo de Silicio:} Su curva de operación se divide en zonas. Permite el paso de corriente (conducción) en polarización directa tras superar la tensión de umbral o barrera ($\approx 0.7$ V). En polarización inversa entra en región de corte, donde la corriente es prácticamente nula.
+    \item \textbf{Diodo LED (Light Emitting Diode):} Funciona bajo el mismo principio, pero emite fotones al recombinarse electrones y huecos. Su tensión de umbral varía entre $1.5$ V y $3.8$ V según el color. Su uso empírico exige siempre la conexión de una resistencia en serie para limitar la corriente.
+\end{itemize}
+
+\subsubsection{Modelo de Conducción: Ecuación de Shockley}
+El comportamiento de estos dispositivos en la zona de conducción directa se describe mediante la \textbf{Ecuación de Shockley}:
+
+\begin{equation}
+    I \approx I_S \cdot e^{\frac{V}{n \cdot V_T}}
+    \label{eq:shockley}
+\end{equation}
+
+Donde $I_S$ es la corriente de saturación inversa, $n$ es el factor de idealidad y $V_T$ es la tensión térmica. Esta relación exponencial implica que pequeños incrementos en la tensión $V$ producen aumentos significativos en la corriente $I$.
+
+Para facilitar el análisis experimental, se suele utilizar la forma logarítmica de la ecuación, la cual permite linealizar el comportamiento del semiconductor:
+
+\begin{equation}
+    \ln(I) = \left(\frac{1}{n \cdot V_T}\right) \cdot V + \ln(I_S)
+\end{equation}
+
+Bajo este modelo, al graficar $\ln(I)$ en función de $V$, se debería obtener una línea recta cuya pendiente está relacionada con el factor de idealidad del material.
+
+\vspace{\fill}
+
+\pagebreak
