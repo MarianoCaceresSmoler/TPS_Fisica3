@@ -44,7 +44,7 @@ El montaje experimental se realizó siguiendo los esquemas de la Figura \ref{fig
         \centering
         \begin{circuitikz}[scale=0.8, transform shape]
             \draw (0,0) to[american voltage source, invert, l=$V_{f}$] (0,3)
-            to[ammeter, l=$A$] (3,3)
+            to[ammeter, l=$I$] (3,3)
             to[R, l=$R$, *-, v=$V_R$] (3,0)
             (3,3) -- (5,3)
             to[voltmeter, l=$V$] (5,0) -- (0,0);
@@ -58,7 +58,7 @@ El montaje experimental se realizó siguiendo los esquemas de la Figura \ref{fig
         \centering
         \begin{circuitikz}[scale=0.8, transform shape]
             \draw (0,0) to[american voltage source, invert, l=$V_{f}$] (0,3)
-            to[ammeter, l=$A$] (3,3)
+            to[ammeter, l=$I$] (3,3)
             to[lamp, l=L, *-, v=$V_L$] (3,0)
             (3,3) -- (5,3)
             to[voltmeter, l=$V$] (5,0) -- (0,0);
@@ -74,12 +74,12 @@ El montaje experimental se realizó siguiendo los esquemas de la Figura \ref{fig
         \centering
         \begin{circuitikz}[scale=0.8, transform shape]
             \draw (0,0) to[american voltage source, invert, l=$V_{f}$] (0,3)
-            to[ammeter, l=$A$] (3,3)
+            to[ammeter, l=$I$] (3,3)
             to[D, l=D, *-, v=$V_D$] (3,0)
             (3,3) -- (5,3)
             to[voltmeter, l=$V$] (5,0) -- (0,0);
         \end{circuitikz}
-        \caption{Diodo de Silicio (1N4007)}
+        \caption{Diodo de Silicio}
         \label{fig:circ_diodo}
     \end{subfigure}
     \hfill
@@ -88,7 +88,7 @@ El montaje experimental se realizó siguiendo los esquemas de la Figura \ref{fig
         \centering
         \begin{circuitikz}[scale=0.8, transform shape]
             \draw (0,0) to[american voltage source, invert, l=$V_{f}$] (0,3)
-            to[ammeter, l=$A$] (3,3)
+            to[ammeter, l=$I$] (3,3)
             to[R, l=$R_p$] (3,1.5)                % Resistencia de protección hasta el punto medio
             to[led, l=LED, *-, v=$V_{LED}$] (3,0)
             
