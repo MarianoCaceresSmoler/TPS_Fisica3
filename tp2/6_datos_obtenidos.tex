@@ -134,8 +134,8 @@ Para los componentes semiconductores, se tabularon los valores que evidencian la
             xmin=0, xmax=3,
             ymin=0, ymax=20
         ]        
-        % LED Rojo
-        \addplot[color=red, mark=diamond*, mark size=2pt] coordinates {
+        % LED azul
+        \addplot[color=blue, mark=diamond*, mark size=2pt] coordinates {
             (0,0) (0.2,0) (0.27,0) (0.46,0) (0.68,0) 
             (1.12,0) (1.32,0) (1.6,0) (1.86,0) (2.13,0) 
             (2.42,0.035) (2.47,0.186) (2.51,0.625) (2.53,0.924) (2.55,1.399) 
@@ -145,14 +145,14 @@ Para los componentes semiconductores, se tabularon los valores que evidencian la
         };
         \end{axis}
     \end{tikzpicture}
-    \caption{Curva característica del LED rojo.}
+    \caption{Curva característica del LED azul.}
     \label{fig:curva_led}
 \end{figure}
 
 \textbf{Análisis Logarítmico del Diodo (Ecuación de Shockley)}: 
 Para verificar el comportamiento exponencial predicho por la ecuación ideal del diodo (Ecuacion \ref{eq:shockley}), se procedió a linealizar la curva aplicando el logaritmo a la corriente medida.
 
-Los valores nulos de corriente fueron descartados del análisis, graficando únicamente los puntos pertenecientes a la zona de conducción directa. Se puede apreciar el resultado en las siguientes figuras (\ref{fig:log_diodo_si} y \ref{fig:log_led_rojo}), donde se observa un comportamiento lineal para ambos dispositivos.
+Los valores nulos de corriente fueron descartados del análisis, graficando únicamente los puntos pertenecientes a la zona de conducción directa. Se puede apreciar el resultado en las siguientes figuras (\ref{fig:log_diodo_si} y \ref{fig:log_led_azul}), donde se observa un comportamiento lineal para ambos dispositivos.
 
 \begin{figure}[htbp]
     \centering
@@ -195,7 +195,7 @@ Los valores nulos de corriente fueron descartados del análisis, graficando úni
             log ticks with fixed point,
             ytick={0.01, 0.1, 1, 10, 100},
         ]
-        \addplot[color=red, mark=diamond*, mark size=2pt] coordinates {            
+        \addplot[color=blue, mark=diamond*, mark size=2pt] coordinates {            
             (2.42,0.035) (2.47,0.186) (2.51,0.625) (2.53,0.924) (2.55,1.399) 
             (2.57,1.952) (2.59,2.7) (2.61,3.69) (2.63,4.45) (2.65,5.53) 
             (2.67,6.83) (2.69,8) (2.72,10.45) (2.74,12) (2.77,13.75) 
@@ -203,6 +203,6 @@ Los valores nulos de corriente fueron descartados del análisis, graficando úni
         };
         \end{semilogyaxis}
     \end{tikzpicture}
-    \caption{Curva característica semilogarítmica de tensión-corriente para un diodo LED rojo en polarización directa.}
-    \label{fig:log_led_rojo}
+    \caption{Curva característica semilogarítmica de tensión-corriente para un diodo LED azul en polarización directa.}
+    \label{fig:log_led_azul}
 \end{figure}
