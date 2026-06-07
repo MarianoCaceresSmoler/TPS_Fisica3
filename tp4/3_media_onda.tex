@@ -1,6 +1,8 @@
 \section{Rectificador de Media Onda}
 
 \subsection{Gráficos de Canales Sincronizados}
+Se incluyen a continuación los gráficos obtenidos al medir simultáneamente la señal de entrada (canal 1) y la señal de salida (canal 2) del rectificador de media onda para cada uno de los casos estudiados: sin capacitor, con capacitor de 100 $\mu$F, con capacitor de 220 $\mu$F y con capacitor de 2200 $\mu$F.\\
+Los gráficos únicamente corresponden a los experimentos realizados con la resistencia de prueba, ya que las formas de onda obtenidas con el cooler fueron similares, aunque con una caída de tensión ligeramente mayor debido a la naturaleza inductiva del motor.
 
 % --- GRÁFICO 1: SIN CAPACITOR ---
 \begin{figure}[htbp]
@@ -111,14 +113,15 @@
     siendo $T$ el período de la señal (considere $f = 50\text{ Hz} \implies T = 20\text{ ms}$).
     
     \begin{tcolorbox}[colback=white, colframe=gray!50, title=Respuesta]
-        % TODO: Desarrollá la integral y poné la comparación acá.
-        Desarrollo de la integral: $V_{RMS} = \frac{v_{op}}{2}$\\
+        Desarrollo de la integral: $V_{RMS} = \frac{v_{op}}{2}$ \\
         Valor teórico calculado (Gráfico \ref{fig:media_onda_sin_capacitor}): $V_{RMS} = \text{7.40 V}$. \\
-        Valor medido con multímetro: $\text{5.00 V}$ para el caso de la resistencia y $\text{5.15 V}$ para el caso del cooler. \\\\
-        La marcada diferencia entre el valor analítico ($7.40\text{ V}$) y las mediciones con el multímetro digital se atribuye principalmente a las limitaciones del instrumento de medición. Los multímetros digitales estándar (que no poseen tecnología True RMS) calculan el valor eficaz asumiendo una señal senoidal pura y simétrica a partir del valor medio rectificado. Al medir una señal pulsante y de corriente continua, este principio introduce un error importante. \\
-        Por otra parte, la discrepancia entre la carga resistiva ($\text{5.00 V}$) y el cooler ($\text{5.15 V}$) responde a la naturaleza inductiva del motor de este último; la presencia de inductancia y la fuerza contraelectromotriz del cooler alteran levemente la forma de onda y la caída de tensión en los diodos en comparación con el comportamiento lineal y puramente resistivo de la resistencia de prueba.
+        Valor medido con multímetro: 5.00 V para el caso de la resistencia y 5.15 V para el caso del cooler. \\
+        
+        La diferencia entre el valor analítico eficaz ($7.40\text{ V}$) y las mediciones del multímetro no se debe a un error instrumental, sino a que se están comparando dos parámetros físicos distintos. Al realizar la medición en la escala de tensión continua (DC), el multímetro registra el valor medio ($\bar{v}$) de la señal y no su valor eficaz ($V_{RMS}$). 
+        
+        Si se compara la medición con el valor medio teórico calculado en el punto 6 ($\bar{v} = 4.71\text{ V}$), se observa una coincidencia muy estrecha. La pequeña discrepancia restante se atribuye a la caída de tensión en el diodo real y a las tolerancias de los componentes.\\
+        Por otra parte, el valor ligeramente mayor en el cooler ($5.15\text{ V}$) responde a su comportamiento como carga inductiva activa, cuya fuerza contraelectromotriz altera levemente la forma de la onda pulsante respecto a la resistencia pura.
     \end{tcolorbox}
-
     \item \textbf{Relación entre Rizado y Capacitancia:}
     ¿Encuentra alguna relación entre la amplitud del rizado y la capacitancia del capacitor?
     
@@ -130,7 +133,7 @@
     ¿Por qué se denomina ``capacitor de filtrado''? ¿Qué filtra?
     
     \begin{tcolorbox}[colback=white, colframe=gray!50, title=Respuesta]
-        Se denomina de esta manera debido a que el capacitor filtra las componentes de alta frecuencia (rizado) de la señal rectificada, permitiendo que solo la componente de baja frecuencia (valor medio) pase a la salida. En otras palabras, el capacitor suaviza la señal de salida, reduciendo las fluctuaciones y proporcionando una tensión más constante.
+        Se denomina ``capacitor de filtrado'' porque actúa como un filtro pasa-bajos que atenúa las variaciones bruscas de tensión (componentes de alterna o rizado) provenientes de la rectificación. El capacitor funciona almacenando energía eléctrica durante los intervalos de conducción de los diodos (cuando la tensión sube) y entregándola gradualmente a la carga cuando la tensión de la fuente decrece. Esto suaviza las fluctuaciones y estabiliza la salida transformando los pulsos en una tensión continua lo más constante posible.
     \end{tcolorbox}
 
     \item \textbf{Velocidad de Rotación del Cooler:}
@@ -166,13 +169,9 @@
     ¿Qué puede concluir con respecto a la eficiencia energética del rectificador de media onda?
     
     \begin{tcolorbox}[colback=white, colframe=gray!50, title=Respuesta]
-        % TODO: Resolvé la integral del valor medio (\bar{v} = v_op / \pi). 
-        % Recordá que v_rizado_RMS = \sqrt{V_RMS^2 - \bar{v}^2}. El factor r teórico da aprox 1.21 (121%).
-        El valor eficaz de la señal de salida sin capacitor de filtrado es
-        $V_{RMS} = \frac{v_{op}}{2}$.\\
         El valor medio calculado es $\bar{v} = \frac{v_{op}}{\pi}$. \\
-        El valor eficaz del rizado se obtiene a partir de la relación $v_{\text{rizado}, RMS} = \sqrt{V_{RMS}^2 - \bar{v}^2}$.\\\\
-        De esta forma se obtuvo: $\bar{v} = \text{4.71 V}$, $V_{RMS} = \text{7.40 V}$ y $v_{\text{rizado}, RMS} = \text{5.71 V}$. \\
+        Utilizando el valor eficaz calculado en el punto 1, el valor eficaz del rizado se obtiene a partir de la relación $v_{\text{rizado}, RMS} = \sqrt{V_{RMS}^2 - \bar{v}^2}$.\\\\
+        De esta forma se obtuvo: $\bar{v} = \text{4.71 V}$ y $v_{\text{rizado}, RMS} = \text{5.71 V}$. \\
         \\
         Así, calculamos el factor de rizado: $r = \frac{v_{\text{rizado}, RMS}}{\bar{v}} \approx 1.21$ (121\%). \\
         Con respecto a la eficiencia energética, se concluye que el rectificador de media onda sin filtrado tiene una eficiencia muy baja debido a la alta proporción de rizado en comparación con el valor medio de la señal de salida. Esto implica que una gran parte de la energía entregada a la carga se desperdicia en forma de fluctuaciones, lo que no es ideal para aplicaciones que requieren una tensión constante y estable.

@@ -71,15 +71,15 @@ def limpiar_datos_osciloscopio(archivo_in, archivo_out, max_puntos=1500):
 
 
 # --- EJECUCIÓN (Cambiá los nombres por tus archivos reales) ---
-limpiar_datos_osciloscopio('DEFAULT2.csv', 'default2.csv')
-limpiar_datos_osciloscopio('DEFAULT5.csv', 'default5.csv')
-limpiar_datos_osciloscopio('DEFAULT6.csv', 'default6.csv')
-limpiar_datos_osciloscopio('DEFAULT9.csv', 'default9.csv')
-limpiar_datos_osciloscopio('DEFAULTA.csv', 'defaultA.csv')
-limpiar_datos_osciloscopio('DEFAULTB.csv', 'defaultB.csv')
+# limpiar_datos_osciloscopio('DEFAULT2.csv', 'default2.csv')
+# limpiar_datos_osciloscopio('DEFAULT5.csv', 'default5.csv')
+# limpiar_datos_osciloscopio('DEFAULT6.csv', 'default6.csv')
+# limpiar_datos_osciloscopio('DEFAULT9.csv', 'default9.csv')
+# limpiar_datos_osciloscopio('DEFAULTA.csv', 'defaultA.csv')
+# limpiar_datos_osciloscopio('DEFAULTB.csv', 'defaultB.csv')
 limpiar_datos_osciloscopio('DEFAULTC.csv', 'defaultC.csv')
-limpiar_datos_osciloscopio('DEFAULTD.csv', 'defaultD.csv')
-limpiar_datos_osciloscopio('DEFAULTE.csv', 'defaultE.csv')
-limpiar_datos_osciloscopio('DEFAULTF.csv', 'defaultF.csv')
-limpiar_datos_osciloscopio('DEFAULTG.csv', 'defaultG.csv')
+# limpiar_datos_osciloscopio('DEFAULTD.csv', 'defaultD.csv')
+# limpiar_datos_osciloscopio('DEFAULTE.csv', 'defaultE.csv')
+# limpiar_datos_osciloscopio('DEFAULTF.csv', 'defaultF.csv')
+# limpiar_datos_osciloscopio('DEFAULTG.csv', 'defaultG.csv')
 

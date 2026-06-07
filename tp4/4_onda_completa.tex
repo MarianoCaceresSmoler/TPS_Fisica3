@@ -1,0 +1,152 @@
+\section{Rectificador de Onda Completa}
+
+\subsection{Gráficos de la salida del rectificador de onda completa}
+Se incluyen a continuación los gráficos obtenidos al medir la salida del rectificador de onda completa para cada uno de los casos estudiados: sin capacitor, con capacitor de 100 $\mu$F, con capacitor de 220 $\mu$F y con capacitor de 2200 $\mu$F.\\
+Los gráficos únicamente corresponden a los experimentos realizados con la resistencia de prueba, ya que las formas de onda obtenidas con el cooler fueron similares, aunque con una caída de tensión ligeramente mayor debido a la naturaleza inductiva del motor.
+
+% --- GRÁFICO 1: SIN CAPACITOR ---
+\begin{figure}[htbp]
+    \centering
+    \begin{tikzpicture}
+        \begin{axis}[
+            width=0.85\textwidth,
+            height=6cm,
+            grid=both,
+            grid style={dashed, gray!30},
+            xlabel={Tiempo (ms)},
+            ylabel={Tensión (V)},
+            title={Salida del rectificador de onda completa - Sin Filtrar},
+            legend pos=north east,
+            xmin=0
+        ]
+            \addplot[color=red, thick] table [x=Tiempo, y=Ch1, col sep=comma] {./csvs/default9.csv};
+        \end{axis}
+    \end{tikzpicture}
+    \caption{Señal de salida del rectificador de onda completa sin capacitor.}
+    \label{fig:onda_completa_sin_capacitor}
+\end{figure}
+
+% --- GRÁFICO 2: CAPACITOR 100uF ---
+\begin{figure}[htbp]
+    \centering
+    \begin{tikzpicture}
+        \begin{axis}[
+            width=0.85\textwidth,
+            height=6cm,
+            grid=both,
+            grid style={dashed, gray!30},
+            xlabel={Tiempo (ms)},
+            ylabel={Tensión (V)},
+            title={Salida del rectificador de onda completa - C = 100 $\mu$F},
+            legend pos=north east,
+            xmin=0
+        ]
+            \addplot[color=red, thick] table [x=Tiempo, y=Ch1, col sep=comma] {./csvs/defaultA.csv};
+        \end{axis}
+    \end{tikzpicture}
+    \caption{Señal de salida del rectificador de onda completa con capacitor de 100 $\mu$F.}
+    \label{fig:onda_completa_capacitor_100u}
+\end{figure}
+
+% --- GRÁFICO 3: CAPACITOR 220uF ---
+\begin{figure}[htbp]
+    \centering
+    \begin{tikzpicture}
+        \begin{axis}[
+            width=0.85\textwidth,
+            height=6cm,
+            grid=both,
+            grid style={dashed, gray!30},
+            xlabel={Tiempo (ms)},
+            ylabel={Tensión (V)},
+            title={Salida del rectificador de onda completa - C = 220 $\mu$F},
+            legend pos=north east,
+            xmin=0
+        ]
+            \addplot[color=red, thick] table [x=Tiempo, y=Ch1, col sep=comma] {./csvs/defaultB.csv};
+        \end{axis}
+    \end{tikzpicture}
+    \caption{Señal de salida del rectificador de onda completa con capacitor de 220 $\mu$F.}
+    \label{fig:onda_completa_capacitor_220u}
+\end{figure}
+
+% --- GRÁFICO 4: CAPACITOR 2200uF ---
+\begin{figure}[htbp]
+    \centering
+    \begin{tikzpicture}
+        \begin{axis}[
+            width=0.85\textwidth,
+            height=6cm,
+            grid=both,
+            grid style={dashed, gray!30},
+            xlabel={Tiempo (ms)},
+            ylabel={Tensión (V)},
+            title={Salida del rectificador de onda completa - C = 2200 $\mu$F},
+            legend pos=north east,
+            xmin=0
+        ]
+            \addplot[color=red, thick] table [x=Tiempo, y=Ch1, col sep=comma] {./csvs/defaultD.csv};
+        \end{axis}
+    \end{tikzpicture}
+    \caption{Señal de salida del rectificador de onda completa con capacitor de 2200 $\mu$F.}
+    \label{fig:onda_completa_capacitor_2200u}
+\end{figure}
+
+\clearpage % Fuerza a que los gráficos se acomoden antes del cuestionario
+
+\subsection{Cuestionario y Análisis de Resultados}
+
+\begin{enumerate}
+    \item \textbf{Cálculo del Valor Eficaz ($V_{RMS}$):}
+    Para el valor de amplitud cero a pico ($v_{op}$) obtenido sin colocar el capacitor de filtrado, obtenga analíticamente el valor eficaz de la tensión de salida y compare con el medido por medio del multímetro digital. El valor RMS teórico se calcula como:
+    
+    \[ V_{RMS} = \sqrt{\frac{1}{T} \int_{0}^{T} v_{op}^2 \sin^2(\omega t) \, dt} \]
+    
+    siendo $T$ el período de la señal (considere $f = 50\text{ Hz}$).
+    
+    \begin{tcolorbox}[colback=white, colframe=gray!50, title=Respuesta]
+        Desarrollo de la integral: $V_{RMS} = \frac{v_{op}}{\sqrt{2}}$. \\
+        Valor teórico calculado (Gráfico \ref{fig:onda_completa_sin_capacitor}): $V_{RMS} = \text{10.89 V}$. \\
+        Valor medido con multímetro: {9.45 V} para el caso de la resistencia y {9.21 V} para el caso del cooler. \\
+        
+        La diferencia entre el valor teórico eficaz ($10.89\text{ V}$) y los valores medidos se debe a que el multímetro, al estar configurado en la {escala de continua (DC)}, mide el {valor medio} ($\bar{v}$) de la onda completa y no el valor eficaz ($V_{RMS}$). 
+        
+        Al contrastar las mediciones con el valor medio teórico calculado en el punto 4 ($\bar{v} = 9.80\text{ V}$), se evidencia una excelente concordancia experimental. La diferencia restante de aproximadamente $0.35\text{ V}$ (frente a los $9.45\text{ V}$ de la resistencia) se explica por la caída de tensión en los diodos del puente, donde la corriente atraviesa obligatoriamente dos diodos de silicio no ideales en cada semiciclo.
+    \end{tcolorbox}
+    \item \textbf{Comparación de Magnitudes de Tensión:}
+    Compare las magnitudes de las tensiones de salida para los distintos capacitores con los obtenidos para el rectificador de media onda.
+    
+    \begin{tcolorbox}[colback=white, colframe=gray!50, title=Respuesta]
+        Al aumentar la capacitancia los valores obtenidos con el multímetro fueron:
+        \begin{itemize}
+            \item Sin capacitor: $\text{9.45 V}$ (resistencia) y $\text{9.21 V}$ (cooler).
+            \item Con capacitor de 100 $\mu$F: $\text{11.80 V}$ (resistencia) y $\text{11.00 V}$ (cooler).
+            \item Con capacitor de 220 $\mu$F: $\text{12.69 V}$ (resistencia) y $\text{12.05 V}$ (cooler).
+            \item Con capacitor de 2200 $\mu$F: $\text{13.18 V}$ (resistencia) y $\text{12.61 V}$ (cooler).
+        \end{itemize}
+        En comparación con el rectificador de media onda, las tensiones medias obtenidas en el rectificador de onda completa son significativamente más altas para los mismos valores de capacitancia. Esto se debe a que en el rectificador de onda completa, la señal de salida tiene el doble de frecuencia (100 Hz) en comparación con el rectificador de media onda (50 Hz), lo que permite que el capacitor se recargue más frecuentemente y mantenga una tensión más alta.
+    \end{tcolorbox}
+
+    \item \textbf{Comparación de Amplitudes de Rizado:}
+    Compare las amplitudes pico a pico de los rizados con los obtenidos previamente para el rectificador de media onda.
+    
+    \begin{tcolorbox}[colback=white, colframe=gray!50, title=Respuesta]
+        Al comparar los resultados se observa que las amplitudes pico a pico del rizado en el rectificador de onda completa (Gráficos \ref{fig:onda_completa_capacitor_100u}, \ref{fig:onda_completa_capacitor_220u} y \ref{fig:onda_completa_capacitor_2200u}) son notablemente menores (aproximadamente la mitad) en comparación con las obtenidas en el rectificador de media onda para los mismos valores de capacitancia (Gŕaficos \ref{fig:media_onda_capacitor_100u}, \ref{fig:media_onda_capacitor_220u}, \ref{fig:media_onda_capacitor_2200u}).
+        
+        Esto se justifica físicamente porque en el rectificador de onda completa la frecuencia de la señal pulsante se duplica ($f_{\text{rizado}} = 100\text{ Hz}$). Al haber el doble de crestas por segundo, el capacitor dispone de la mitad del tiempo para descargarse ($10\text{ ms}$ en lugar de $20\text{ ms}$) sobre la carga antes de recibir el siguiente pulso de recarga. Como el tiempo de descarga disminuye drásticamente, la caída de tensión en los valles es mucho menor, logrando un filtrado mucho más eficiente y una señal de salida más cercana a una continua pura.
+    \end{tcolorbox}
+
+    \item \textbf{Factor de Rizado y Eficiencia Energética:}
+    Obtenga analíticamente el factor de rizado para la señal de salida sin capacitor de filtrado para el rectificador de onda completa. ¿Qué conclusión puede sacar con respecto a la eficiencia energética al comparar con el rectificador de media onda?
+    
+    \begin{tcolorbox}[colback=white, colframe=gray!50, title=Respuesta]
+        El valor medio para una señal de onda completa es $\bar{v} = \frac{2v_{op}}{\pi}$. \\
+        Utilizando el valor eficaz calculado en el punto 1, el valor RMS del rizado es $v_{\text{rizado}, RMS} = \sqrt{V_{RMS}^2 - \bar{v}^2}$. \\
+        \\
+        Así se obtuvo: $\bar{v} = \text{9.80 V}$ y $v_{\text{rizado}, RMS} = \text{4.75 V}$. \\
+        
+        Por lo tanto, el factor de rizado analítico es:
+        \[ r = \frac{v_{\text{rizado}, RMS}}{\bar{v}} = 0.48 \]
+        Al comparar este resultado ($r \approx 0,48$) con el obtenido en media onda ($r \approx 1,21$), podemos concluir en términos de eficiencia energética que el rectificador de onda completa es significativamente más eficiente que el de media onda. Esto se debe a que el factor de rizado es mucho menor, lo que indica que la señal de salida es más estable y tiene menos fluctuaciones, lo que a su vez implica que una mayor proporción de la energía entregada a la carga se utiliza de manera efectiva en lugar de desperdiciarse en forma de rizado.
+    \end{tcolorbox}
+\end{enumerate}
