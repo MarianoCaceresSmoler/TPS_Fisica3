@@ -1,6 +1,7 @@
 \section{Corriente entregada por la fuente dependiendo del capacitor de filtrado}
 
-
+\subsection{Gráficos de medición sobre el fusible}
+A continuación, se presentan los gráficos correspondientes a la medición realizada con el osciloscopio sobre los bornes del fusible de protección. Dado que el fusible presenta una resistencia interna muy pequeña y constante, la forma de onda de la tensión medida es directamente proporcional a la corriente entregada hacia el circuito rectificador ($v(t) \propto i(t)$).
 
 % --- GRÁFICO 1: SIN CAPACITOR ---
 \begin{figure}[htbp]
@@ -20,7 +21,7 @@
             \addplot[color=red, thick] table [x=Tiempo, y=Ch1, col sep=comma] {./csvs/defaultD.csv};
         \end{axis}
     \end{tikzpicture}
-    \caption{Señal de corriente sobre el fusible - Sin Filtrar.}
+    \caption{Señal de tensión sobre el fusible, proporcional a la corriente entregada sin capacitor.}
     \label{fig:corriente_sin_capacitor}
 \end{figure}
 
@@ -42,7 +43,7 @@
             \addplot[color=red, thick] table [x=Tiempo, y=Ch1, col sep=comma] {./csvs/defaultE.csv};
         \end{axis}
     \end{tikzpicture}
-    \caption{Señal de corriente sobre el fusible - C = 100 $\mu$F.}
+    \caption{Señal de tensión sobre el fusible, proporcional a la corriente entregada con C = 100 $\mu$F.}
     \label{fig:corriente_capacitor_100u}
 \end{figure}
 
@@ -64,7 +65,7 @@
             \addplot[color=red, thick] table [x=Tiempo, y=Ch1, col sep=comma] {./csvs/defaultF.csv};
         \end{axis}
     \end{tikzpicture}
-    \caption{Señal de corriente sobre el fusible - C = 220 $\mu$F.}
+    \caption{Señal de tensión sobre el fusible, proporcional a la corriente entregada con C = 220 $\mu$F.}
     \label{fig:corriente_capacitor_220u}
 \end{figure}
 
@@ -86,8 +87,18 @@
             \addplot[color=red, thick] table [x=Tiempo, y=Ch1, col sep=comma] {./csvs/defaultG.csv};
         \end{axis}
     \end{tikzpicture}
-    \caption{Señal de corriente sobre el fusible - C = 2200 $\mu$F.}
+    \caption{Señal de tensión sobre el fusible, proporcional a la corriente entregada con C = 2200 $\mu$F.}
     \label{fig:corriente_capacitor_2200u}
 \end{figure}
 
 \clearpage
+
+\subsection{Análisis de los Picos de Corriente}
+
+\begin{tcolorbox}[colback=white, colframe=gray!50, title=Relación entre el filtrado y la corriente de fuente]
+    Al observar la progresión de los gráficos (\ref{fig:corriente_sin_capacitor} a \ref{fig:corriente_capacitor_2200u}), se hace evidente que a medida que aumenta la capacitancia de filtrado, la corriente demandada a la fuente adquiere forma de picos cada vez más estrechos y de mayor amplitud.
+
+    Físicamente, esto ocurre porque un capacitor más grande mantiene la tensión de salida en un valor elevado (menor rizado) durante casi todo el ciclo. Como los diodos del rectificador solo pueden conducir cuando la tensión del transformador supera a la tensión almacenada en el capacitor, el ángulo de conducción (el tiempo durante el cual los diodos están en directa) se vuelve extremadamente corto. 
+
+    Para poder reponer toda la energía que la carga consumió durante el ciclo en esa pequeña ventana de tiempo, el transformador debe inyectar un pulso de corriente de gran magnitud. Esto demuestra que si bien un capacitor excesivamente grande mejora la calidad de la tensión continua (reduciendo el rizado), somete a los diodos y al transformador a un estrés de corriente repetitivo que puede superar sus especificaciones máximas o fundir las protecciones térmicas y fusibles.
+\end{tcolorbox}
