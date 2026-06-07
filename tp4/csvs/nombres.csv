@@ -1,0 +1,38 @@
+,,
+C,,
+100u,,
+220u,,
+2200u,,
+,,
+Rc = 100,,
+"Rlimit = 4,7",,
+,,
+Media Onda (Resistencia 100ohm),,Multimetro
+Sin capacitor,DEFAULT1,5.00
+100u,DEFAULT2,8.87
+220u,DEFAULT5,10.90
+2200u,DEFAULT6,12.40
+,,
+Media Onda (Ventilador),,Multimetro
+SIn capacitor,DEFAULT1,5.15
+100u,DEFAULT2,7.69
+220u,DEFAULT5,9.76
+2200u,DEFAULT6,11.60
+,,
+Onda completa (Resistencia 100ohm),,Multimetro
+Sin capacitor,DEFAULT9,9.45
+100u,DEFAULTA,11.80
+220u,DEFAULTB,12.69
+2200u,DEFAULTC,13.18
+,,
+Onda completa (Resistencia 100ohm),,Multimetro
+Sin capacitor,DEFAULT9,09.21
+100u,DEFAULTA,11.00
+220u,DEFAULTB,12.05
+2200u,DEFAULTC,12.61
+,,
+Medicion de la corriente de entrada (sobre el fusible),,
+Sin capacitor,DEFAULTD,
+100u,DEFAULTE,
+220u,DEFAULTF,
+2200u,DEFAULTG,
