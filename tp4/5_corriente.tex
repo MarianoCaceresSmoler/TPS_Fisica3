@@ -1,7 +1,7 @@
 \section{Corriente entregada por la fuente dependiendo del capacitor de filtrado}
 
-\subsection{Gráficos de medición sobre el fusible}
-A continuación, se presentan los gráficos correspondientes a la medición realizada con el osciloscopio sobre los bornes del fusible de protección. Dado que el fusible presenta una resistencia interna muy pequeña y constante, la forma de onda de la tensión medida es directamente proporcional a la corriente entregada hacia el circuito rectificador ($v(t) \propto i(t)$).
+\subsection{Gráficos de medición sobre la resistencia limitadora}
+A continuación, se presentan los gráficos correspondientes a la medición realizada con el osciloscopio sobre los bornes de la resistencia limitadora. Dado que esta resistencia presenta un valor muy pequeño y constante ($R_{lim} = 0.47\ \Omega$), la forma de onda de la tensión medida es directamente proporcional a la corriente entregada hacia el circuito rectificador ($v(t) \propto i(t)$).
 
 % --- GRÁFICO 1: SIN CAPACITOR ---
 \begin{figure}[htbp]
@@ -13,15 +13,15 @@ A continuación, se presentan los gráficos correspondientes a la medición real
             grid=both,
             grid style={dashed, gray!30},
             xlabel={Tiempo (ms)},
-            ylabel={Tensión (V)},
-            title={Corriente sobre el fusible - Sin Filtrar},
+            ylabel={Corriente (A)},
+            title={Corriente sobre la resistencia limitadora - Sin Filtrar},
             legend pos=north east,
             xmin=0
         ]
-            \addplot[color=red, thick] table [x=Tiempo, y=Ch1, col sep=comma] {./csvs/defaultD.csv};
+            \addplot[color=red, thick] table [x=Tiempo, y expr=\thisrow{Ch1}/0.47, col sep=comma] {./csvs/defaultD.csv};
         \end{axis}
     \end{tikzpicture}
-    \caption{Señal de tensión sobre el fusible, proporcional a la corriente entregada sin capacitor.}
+    \caption{Señal de corriente entregada sin capacitor (obtenida dividiendo la tensión por $0.47\ \Omega$).}
     \label{fig:corriente_sin_capacitor}
 \end{figure}
 
@@ -35,15 +35,15 @@ A continuación, se presentan los gráficos correspondientes a la medición real
             grid=both,
             grid style={dashed, gray!30},
             xlabel={Tiempo (ms)},
-            ylabel={Tensión (V)},
+            ylabel={Corriente (A)},
             title={Corriente sobre el fusible - C = 100 $\mu$F},
             legend pos=north east,
             xmin=0
         ]
-            \addplot[color=red, thick] table [x=Tiempo, y=Ch1, col sep=comma] {./csvs/defaultE.csv};
+            \addplot[color=red, thick] table [x=Tiempo, y expr=\thisrow{Ch1}/0.47, col sep=comma] {./csvs/defaultE.csv};
         \end{axis}
     \end{tikzpicture}
-    \caption{Señal de tensión sobre el fusible, proporcional a la corriente entregada con C = 100 $\mu$F.}
+    \caption{Señal de corriente entregada con C = 100 $\mu$F.}
     \label{fig:corriente_capacitor_100u}
 \end{figure}
 
@@ -57,15 +57,15 @@ A continuación, se presentan los gráficos correspondientes a la medición real
             grid=both,
             grid style={dashed, gray!30},
             xlabel={Tiempo (ms)},
-            ylabel={Tensión (V)},
+            ylabel={Corriente (A)},
             title={Corriente sobre el fusible - C = 220 $\mu$F},
             legend pos=north east,
             xmin=0
         ]
-            \addplot[color=red, thick] table [x=Tiempo, y=Ch1, col sep=comma] {./csvs/defaultF.csv};
+            \addplot[color=red, thick] table [x=Tiempo, y expr=\thisrow{Ch1}/0.47, col sep=comma] {./csvs/defaultF.csv};
         \end{axis}
     \end{tikzpicture}
-    \caption{Señal de tensión sobre el fusible, proporcional a la corriente entregada con C = 220 $\mu$F.}
+    \caption{Señal de corriente entregada con C = 220 $\mu$F.}
     \label{fig:corriente_capacitor_220u}
 \end{figure}
 
@@ -79,15 +79,15 @@ A continuación, se presentan los gráficos correspondientes a la medición real
             grid=both,
             grid style={dashed, gray!30},
             xlabel={Tiempo (ms)},
-            ylabel={Tensión (V)},
+            ylabel={Corriente (A)},
             title={Corriente sobre el fusible - C = 2200 $\mu$F},
             legend pos=north east,
             xmin=0
         ]
-            \addplot[color=red, thick] table [x=Tiempo, y=Ch1, col sep=comma] {./csvs/defaultG.csv};
+            \addplot[color=red, thick] table [x=Tiempo, y expr=\thisrow{Ch1}/0.47, col sep=comma] {./csvs/defaultG.csv};
         \end{axis}
     \end{tikzpicture}
-    \caption{Señal de tensión sobre el fusible, proporcional a la corriente entregada con C = 2200 $\mu$F.}
+    \caption{Señal de corriente entregada con C = 2200 $\mu$F.}
     \label{fig:corriente_capacitor_2200u}
 \end{figure}
 
