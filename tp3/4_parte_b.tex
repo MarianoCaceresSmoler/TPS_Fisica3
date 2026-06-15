@@ -1,0 +1,34 @@
+\section{Parte B: Circuito RL de Corriente Alterna}
+
+\subsection{Objetivos y Fundamento Teórico}
+El propósito de esta segunda etapa es determinar experimentalmente la resistencia interna ($r$) y la inductancia ($L$) de una bobina real en un circuito serie de corriente alterna alimentado a frecuencia industrial ($50\text{ Hz}$). 
+
+A diferencia de un inductor ideal, una bobina real posee una resistencia óhmica asociada debido al bobinado de cobre. Por lo tanto, la impedancia del circuito serie $R-L-r$ se expresa como:
+\begin{equation}
+Z = \sqrt{(R+r)^2 + (\omega L)^2}
+\end{equation}
+
+El desfase angular general del circuito viene dado por:
+\begin{equation}
+\tan(\varphi) = \frac{\omega L}{R+r}
+\end{equation}
+
+\subsection{Resultados Experimentales y Análisis}
+Utilizando una fuente de tensión alterna de $12\text{ V}$ a $50\text{ Hz}$ y un resistor nominal de aproximadamente $50\ \Omega$, se midieron de forma directa la corriente eficaz del circuito y las caídas de tensión en cada componente mediante instrumentación de laboratorio.
+
+Los valores experimentales obtenidos y las magnitudes calculadas mediante la resolución del diagrama fasorial se detallan a continuación:
+
+\begin{table}[h!]
+\centering
+\caption{Mediciones y parámetros determinados para el circuito RL real.}
+\label{tab:parteB}
+\begin{tabular}{cccccc}
+\toprule
+$V_R$ (V) & $V_{zL}$ (V) & $V_{total}$ (V) & $I$ (mA) & $r$ ($\Omega$) & $L$ (mH) \\
+\midrule
+5.36 & 9.08 & 12.95 & 105.6 & 49.93 & 222.817 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+A través del método del paralelogramo para las tensiones fasoriales, se dedujo un ángulo de fase $\alpha = 34.806^{\circ}$. Esto permitió proyectar la caída de tensión de la bobina en sus componentes intrínsecas: una caída resistiva pura $u_r \approx 5.273\text{ V}$ y una caída inductiva pura $V_L \approx 7.392\text{ V}$, logrando aislar con éxito los parámetros reales del componente.
