@@ -1,34 +1,137 @@
 \section{Parte B: Circuito RL de Corriente Alterna}
 
 \subsection{Objetivos y Fundamento Teórico}
-El propósito de esta segunda etapa es determinar experimentalmente la resistencia interna ($r$) y la inductancia ($L$) de una bobina real en un circuito serie de corriente alterna alimentado a frecuencia industrial ($50\text{ Hz}$). 
+El propósito de esta segunda etapa es determinar experimentalmente la resistencia interna ($r$) y la inductancia ($L$) de una bobina real en un circuito serie de corriente alterna alimentado a la frecuencia de la red eléctrica ($50\text{ Hz}$). 
 
-A diferencia de un inductor ideal, una bobina real posee una resistencia óhmica asociada debido al bobinado de cobre. Por lo tanto, la impedancia del circuito serie $R-L-r$ se expresa como:
+A diferencia de un inductor ideal, una bobina real posee una resistencia óhmica asociada debido al largo del bobinado de cobre. Por lo tanto, el comportamiento de la bobina se modela equivalentemente como una inductancia ideal $L$ en serie con una resistencia intrínseca $r$. La impedancia total del circuito serie $R - L - r$ se expresa como:
 \begin{equation}
 Z = \sqrt{(R+r)^2 + (\omega L)^2}
 \end{equation}
 
-El desfase angular general del circuito viene dado por:
+Para determinar analíticamente las incógnitas de la bobina sin realizar mediciones directas de fase con el osciloscopio, se emplea un método geométrico basado en el diagrama fasorial de tensiones. Tomando como referencia horizontal la corriente eficaz $I$, la caída de tensión en el resistor ideal ($\vec{V}_R$) se encuentra en estricta fase con esta. Por su parte, la tensión total del circuito ($\vec{V}_{total}$) presenta un ángulo de desfase $\varphi$ respecto a la corriente, mientras que la bobina real aporta un fasor de tensión compuesto $\vec{V}_{zL}$.
+
+Estos tres vectores de tensión forman un triángulo general no rectángulo en el plano complejo:
+
+\begin{figure}[H]
+\centering
+\begin{tikzpicture}[scale=0.9]
+
+% Puntos
+\coordinate (O) at (0,0);
+\coordinate (A) at (4,0);
+\coordinate (B) at (6,4);
+
+% Eje de referencia (corriente)
+\draw[dashed] (-0.3,0) -- (7.5,0);
+\draw[->] (6.8,0) -- (7.8,0);
+\node[right] at (7.8,0) {$I$};
+
+% Vector VR
+\draw[->,thick] (O) -- (A);
+\node[below] at (2,0) {$V_R=R\,I$};
+
+% Vector VzL
+\draw[->,thick] (A) -- (B);
+\node[left] at (6.0,1.8) {$V_{zL}=Z_L\,I$};
+
+% Vector total de referencia para cos(phi)
+\draw[dashed] (O) -- (B);
+\node[above left] at (2.8,2.0) {$V_{RZL}$};
+
+% Componentes de la bobina
+\draw[dashed] (B) -- (6,0);
+
+\draw[->,thick] (A) -- (6,0);
+\node[below] at (5,0) {$r\,I$};
+
+\draw[->,thick] (6,0) -- (B);
+\node[right] at (6.1,2.8) {$V_L=X_LI=\omega LI$};
+
+% Ángulo phi
+\draw (1.0,0) arc (0:34:1);
+\node at (1.3,0.35) {$\varphi$};
+
+% Proyección horizontal
+\draw[dotted,<->] (0,-0.8) -- (6,-0.8);
+\node[below] at (3,-0.8) {$V_{RZL}\cos(\varphi)$};
+
+\end{tikzpicture}
+\caption{Diagrama fasorial utilizado para determinar la resistencia interna y la inductancia de una bobina real.}
+\label{fig:fasores_bobina_real}
+\end{figure}
+
+Aplicando el Teorema del Coseno a dicho triángulo, donde la tensión en la bobina $V_{zL}$ es el lado opuesto al ángulo de desfase total $\varphi$, se establece la siguiente relación geométrica:
 \begin{equation}
-\tan(\varphi) = \frac{\omega L}{R+r}
+V_{zL}^2 = V_{total}^2 + V_R^2 - 2 \cdot V_{total} \cdot V_R \cdot \cos(\varphi)
 \end{equation}
 
-\subsection{Resultados Experimentales y Análisis}
-Utilizando una fuente de tensión alterna de $12\text{ V}$ a $50\text{ Hz}$ y un resistor nominal de aproximadamente $50\ \Omega$, se midieron de forma directa la corriente eficaz del circuito y las caídas de tensión en cada componente mediante instrumentación de laboratorio.
+A partir de esta ecuación, y disponiendo de las lecturas directas de los módulos de tensión obtenidos en el laboratorio ($V_R$, $V_{zL}$ y $V_{total}$), es posible aislar y calcular el coseno del ángulo de desfase del circuito:
+\begin{equation}
+\cos(\varphi) = \frac{V_{total}^2 + V_R^2 - V_{zL}^2}{2 \cdot V_{total} \cdot V_R}
+\label{eq:cos_phi}
+\end{equation}
 
-Los valores experimentales obtenidos y las magnitudes calculadas mediante la resolución del diagrama fasorial se detallan a continuación:
+Una vez determinado el ángulo $\varphi$, se realiza la proyección trigonométrica del fasor de tensión total para descomponer las componentes resistiva e inductiva de la bobina real. Dado que la componente activa total en el eje horizontal equivale a la suma de la caída en el resistor conocido más la resistencia interna, es decir $V_R + V_r = V_{total} \cdot \cos(\varphi)$, se deduce de forma directa la tensión asociada a la resistencia interna de la bobina ($V_r$):
+\begin{equation}
+V_r = V_{total} \cdot \cos(\varphi) - V_R
+\label{eq:Vr}
+\end{equation}
+
+Por otro lado, la caída de tensión puramente inductiva ($V_{L}$) de la bobina ideal equivalente corresponde a la proyección vertical del fasor total sobre el eje de cuadratura:
+\begin{equation}
+V_L = V_{total} \cdot \sin(\varphi)
+\label{eq:VL}
+\end{equation}
+
+Finalmente, habiendo hallado con éxito las caídas de tensión internas calculadas $V_r$ y $V_L$, y conociendo el valor de la corriente eficaz $I$ registrada por el multímetro, se calculan de manera consecuente las propiedades físicas intrínsecas del inductor real mediante la ley de Ohm y la definición de reactancia inductiva ($X_L = \omega L$):
+\begin{equation}
+r = \frac{V_r}{I}
+\label{eq:r}
+\end{equation}
+
+\begin{equation}
+L = \frac{V_L}{\omega \cdot I} = \frac{V_L}{2\pi f \cdot I}
+\label{eq:L}
+\end{equation}
+
+Donde $f = 50\text{ Hz}$ es la frecuencia de la red eléctrica y $\omega = 2\pi f \approx 314.16\text{ rad/s}$ es la pulsación angular de la fuente.
+
+\subsection{Resultados Experimentales y Análisis}
+Utilizando una fuente de tensión alterna de $12\text{ V}$ a $50\text{ Hz}$ y un resistor nominal de aproximadamente $50\ \Omega$ (Figura \ref{fig:parteB}), se midieron de forma directa la corriente eficaz del circuito y las caídas de tensión en cada componente mediante instrumentación de laboratorio.
+
+\begin{figure}[H]
+\centering
+\begin{circuitikz}[american]
+    \draw (0,0) to[sinusoidal voltage source, l=$V_{in}$] (0,3) to[R, l=$R$] (3,3) to[L, l=$L$] (3,0) to[R, l=$r$] (0,0);
+\end{circuitikz}
+\caption{Esquema del circuito RL serie utilizado en la Parte B.}
+\label{fig:parteB}
+\end{figure}
+
+Los valores experimentales obtenidos mediante la medición directa de las tensiones y la corriente con voltímetro y amperímetro se presentan en la Tabla \ref{tab:parteB}.
 
 \begin{table}[h!]
 \centering
 \caption{Mediciones y parámetros determinados para el circuito RL real.}
 \label{tab:parteB}
-\begin{tabular}{cccccc}
+\begin{tabular}{cccc}
 \toprule
-$V_R$ (V) & $V_{zL}$ (V) & $V_{total}$ (V) & $I$ (mA) & $r$ ($\Omega$) & $L$ (mH) \\
+$V_R$ (V) & $V_{zL}$ (V) & $V_{total}$ (V) & $I$ (mA) \\
 \midrule
-5.36 & 9.08 & 12.95 & 105.6 & 49.93 & 222.817 \\
+5.36 & 9.08 & 12.95 & 105.6 \\
 \bottomrule
 \end{tabular}
 \end{table}
 
-A través del método del paralelogramo para las tensiones fasoriales, se dedujo un ángulo de fase $\alpha = 34.806^{\circ}$. Esto permitió proyectar la caída de tensión de la bobina en sus componentes intrínsecas: una caída resistiva pura $u_r \approx 5.273\text{ V}$ y una caída inductiva pura $V_L \approx 7.392\text{ V}$, logrando aislar con éxito los parámetros reales del componente.
+A partir de estos datos, se aplicó la ecuación \ref{eq:cos_phi} para calcular el coseno del ángulo de desfase $\varphi$, obteniendo un valor:
+\begin{equation}\cos(\varphi) = \frac{12.95^2 + 5.36^2 - 9.08^2}{2 \cdot 12.95 \cdot 5.36}
+\end{equation}
+\begin{equation}\cos(\varphi) \approx 0.82 \implies \varphi \approx 34.806^\circ\end{equation}
+Luego, utilizando las ecuaciones \ref{eq:Vr} y \ref{eq:VL}, se determinaron las caídas de tensión internas de la bobina:
+\begin{equation}V_r = 12.95 \cdot 0.82 - 5.36 \approx 5.273\text{ V}\end{equation}
+\begin{equation}V_L = 12.95 \cdot \sin(34.806^\circ) \approx 7.392\text{ V}\end{equation}
+Finalmente, conociendo la corriente eficaz $I = 105.6\text{ mA}$, a partir de las ecuaciones \ref{eq:r} y \ref{eq:L} se calcularon los parámetros físicos de la bobina real:
+\begin{equation}r = \frac{5.27\text{ V}}{0.1056\text{ A}} \approx 49.93\ \Omega\end{equation}
+\begin{equation}L = \frac{7.392\text{ V}}{314.16\text{ rad/s} \cdot 0.1056\text{ A}} \approx 222.817\text{ mH}\end{equation}
+
+
