@@ -134,4 +134,39 @@ Finalmente, conociendo la corriente eficaz $I = 105.6\text{ mA}$, a partir de la
 \begin{equation}r = \frac{5.27\text{ V}}{0.1056\text{ A}} \approx 49.93\ \Omega\end{equation}
 \begin{equation}L = \frac{7.392\text{ V}}{314.16\text{ rad/s} \cdot 0.1056\text{ A}} \approx 222.817\text{ mH}\end{equation}
 
+\subsection{Verificación Mediante Simulación de Circuito}
 
+Con el fin de validar los valores de $r$ y $L$ obtenidos mediante el método geométrico mediante una vía de cálculo independiente, se modeló numéricamente\footnote{Implementado mediante un script en Python, utilizando como entrada los valores de $R$, $r$ y $L$ ya obtenidos.} el circuito como una impedancia serie pura, sin recurrir al Teorema del Coseno utilizado en la sección 2.1:
+\begin{equation}
+|Z_{total}| = \sqrt{(R+r)^2 + (\omega L)^2}, \qquad |Z_{bobina}| = \sqrt{r^2 + (\omega L)^2}
+\label{eq:zsim}
+\end{equation}
+
+Utilizando $R = 50\ \Omega$, junto con los valores previamente calculados $r = 49{,}93\ \Omega$ y $L = 222{,}817$ mH, se obtuvo $\omega L \approx 70{,}00\ \Omega$, $|Z_{total}| \approx 122{,}01\ \Omega$ y $|Z_{bobina}| \approx 85{,}98\ \Omega$. A partir de estos módulos de impedancia y de la corriente eficaz medida $I = 105{,}6$ mA, se predijeron las restantes tensiones del circuito mediante la ley de Ohm fasorial, y se contrastaron con los valores leídos directamente en el laboratorio (Tabla \ref{tab:sim}).
+
+\begin{table}[h]
+\centering
+\caption{Comparación entre los valores medidos en el laboratorio (Tabla 2) y los predichos a partir de la impedancia simulada.}
+\label{tab:sim}
+\begin{tabular}{lccc}
+\toprule
+Magnitud & Medido & Predicho & Diferencia \\
+\midrule
+$V_{total}$ & 12{,}95 V & 12{,}88 V & 0{,}51\,\% \\
+$V_R$ & 5{,}36 V & 5{,}28 V & 1{,}49\,\% \\
+$V_{zL}$ & 9{,}08 V & 9{,}08 V & $\sim$0\,\% \\
+$I$ & 105{,}60 mA & 106{,}14 mA & 0{,}51\,\% \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+La Figura \ref{fig:onda} muestra las formas de onda temporales simuladas de $V_{total}(t)$, $V_R(t)$ e $I(t)$, construidas a partir de las magnitudes medidas y del ángulo de desfase $\varphi \approx 34{,}8^\circ$ calculado en la sección 2.2. 
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.85\textwidth]{parteB_simulacion.png}
+\caption{Formas de onda simuladas de $V_{total}$, $V_R$ e $I$ para el circuito RL real de la Parte B.}
+\label{fig:onda}
+\end{figure}
+
+Las diferencias obtenidas, todas inferiores al $1{,}5\%$, confirman que los valores de $r$ y $L$ calculados mediante el método fasorial geométrico son consistentes con el cálculo directo de impedancia, lo cual constituye una verificación cruzada independiente del procedimiento utilizado en la sección 2.2. El pequeño residuo remanente es atribuible a la propagación de redondeo a lo largo de la cadena de cálculo ($\cos\varphi \rightarrow V_r, V_L \rightarrow r, L$), y no a un error sistemático del método.

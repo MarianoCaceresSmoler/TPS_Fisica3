@@ -172,3 +172,51 @@ L = \frac{Q \cdot R}{\omega_0} = 35.45\text{ mH}
 \end{equation}
 
 Este segundo valor de inductancia se encuentra en el mismo orden de magnitud que el calculado a partir de la frecuencia de resonancia, aunque con una diferencia significativa. Esta discrepancia puede atribuirse a la presencia de pérdidas adicionales en el circuito, como la resistencia interna del inductor o las pérdidas dieléctricas del capacitor, que no fueron consideradas en el modelo teórico ideal.
+
+
+\subsection{Análisis de Fase y Ancho de Banda Teórico}
+
+Como complemento al análisis de módulo presentado en la sección anterior, se estudió el comportamiento de la fase $\varphi$ entre la tensión y la corriente del circuito RLC serie, dada por:
+\begin{equation}
+\varphi(f) = \arctan\left(\frac{\omega L - \dfrac{1}{\omega C}}{R}\right)
+\label{eq:fase}
+\end{equation}
+
+Dado que en la sección 1.2 se obtuvieron dos valores distintos de inductancia ($L_1 = 46{,}96$ mH a partir de $f_0$, y $L_2 = 35{,}45$ mH a partir del factor de mérito $Q$), se evaluó la ecuación \ref{eq:fase} para ambos casos, en lugar de asumir arbitrariamente uno de los dos.
+
+Asimismo, en lugar de utilizar la aproximación de banda angosta $BW \approx f_0/Q$, se resolvieron analíticamente las frecuencias de corte exactas a partir de la condición $|Z| = R\sqrt{2}$, que conduce a una ecuación cuadrática en $\omega$ cuyas raíces positivas son:
+\begin{equation}
+\omega_{1,2} = \frac{\mp R + \sqrt{R^2 + 4L/C}}{2L}
+\label{eq:cortes}
+\end{equation}
+
+A diferencia de la aproximación usual, la ecuación \eqref{eq:cortes} no asume simetría de $f_1$ y $f_2$ alrededor de $f_0$, lo cual resulta relevante dado el bajo factor de mérito obtenido ($Q \approx 0{,}778$). Cabe notar que, aun así, la diferencia $f_2-f_1$ se reduce algebraicamente de forma exacta a $BW = R/(2\pi L)$, por lo que esta fórmula no constituye en sí misma una aproximación. Los resultados se resumen en la Tabla \ref{tab:bw}.
+
+\begin{table}[H]
+\centering
+\caption{Frecuencias de corte y ancho de banda teóricos, según el valor de $L$ utilizado, comparados con los valores experimentales.}
+\label{tab:bw}
+\begin{tabular}{lccc}
+\toprule
+& $f_1$ [kHz] & $f_2$ [kHz] & $BW$ [kHz] \\
+\midrule
+$L_1 = 46{,}96$ mH (de $f_0$) & 1{,}69 & 4{,}31 & 2{,}62 \\
+$L_2 = 35{,}45$ mH (de $Q$) & 1{,}82 & 5{,}29 & 3{,}47 \\
+{Experimental} & {1{,}53} & {5{,}00} & {3{,}47} \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+La Figura \ref{fig:fase} muestra las curvas de fase teóricas para ambos valores de $L$, junto con las referencias de $f_0$, $f_1$ y $f_2$ experimentales y las asíntotas de $\pm 45^\circ$ correspondientes a las frecuencias de corte ideales.
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.85\textwidth]{parteA_fase.png}
+\caption{Fase teórica del circuito RLC serie en función de la frecuencia, para los dos valores de $L$ calculados.}
+\label{fig:fase}
+\end{figure}
+
+Se observa que $L_2$ reproduce casi exactamente el ancho de banda experimental, lo cual es consistente por construcción, ya que dicho valor fue obtenido precisamente a partir de las frecuencias de corte medidas ($f_1$ y $f_2$). El resultado más informativo surge al comparar con $L_1$: al ser calculado de forma independiente, únicamente a partir de la frecuencia de resonancia, predice un ancho de banda teórico un $24\%$ más angosto que el medido experimentalmente. Esto indica que la discrepancia entre ambos valores de inductancia, ya señalada en la sección 1.2, no es meramente numérica sino que tiene una consecuencia física directa sobre la selectividad predicha del circuito.
+
+Adicionalmente, se verificó que la relación $f_0^2 = f_1 \cdot f_2$, válida bajo la aproximación de alto $Q$, no se cumple de forma exacta con los datos experimentales ($f_0^2 = 7{,}29 \times 10^6\text{ Hz}^2$ frente a $f_1 f_2 = 7{,}65\times10^6\text{ Hz}^2$, una diferencia del $4{,}9\%$), lo cual es coherente con el bajo factor de mérito obtenido y confirma que el circuito se aleja del comportamiento de banda angosta idealizado.
+
